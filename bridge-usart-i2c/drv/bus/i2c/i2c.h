@@ -18,12 +18,20 @@ typedef enum _i2c_stop_cond_t {
 	I2C_STOP_COND_STOP
 } i2c_stop_cond_t;
 
-typedef struct _i2c_device_t {
-	I2C_TypeDef *hw;
+typedef struct _device_hw_t {
+	void *hw;
 
 	uint16_t address;
 	uint32_t freq;
 } i2c_device_t;
+
+typedef struct _device_op_i2c_t {
+	int32_t (*open)(device_t *, uint16_t, uint32_t);
+	int32_t (*close)(device_t *);
+	int32_t (*transfer)(device_t *, uint16_t, uint8_t *, uint16_t, i2c_stop_cond_t);
+} device_op_i2c_t;
+
+
 
 /* ***** PUBLIC METHODS ***** */
 /**

@@ -6,6 +6,13 @@
 #include "time.h"
 
 
+/* ***** OPERATIONS **** */
+static device_op_i2c_t ops = {
+		.open = i2c_open,
+		.close = i2c_close,
+		.transfer = i2c_transfer,
+};
+
 /* ***** PRIVATE_METHODS ***** */
 /**
  * @brief Read method on an i2c bus to the slave address addr
@@ -31,7 +38,7 @@ int32_t _i2c_write(I2C_TypeDef* I2Cx, uint16_t addr, uint8_t *buf, uint32_t len,
 
 
 /* ***** PUBLIC METHODS ***** */
-int32_t i2c_open(device_t dev, uint32_t id, uint16_t own_addr, uint32_t freq)
+int32_t i2c_open(device_t dev, uint16_t own_addr, uint32_t freq)
 {
 	I2C_InitTypeDef _i2c_init;
 	GPIO_InitTypeDef _i2c_gpio;
