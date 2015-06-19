@@ -1,2 +1,2 @@
 # nanoos
-Foundation build reliable software on MCU
+Framework to build reliable and independant application on MCUs.
