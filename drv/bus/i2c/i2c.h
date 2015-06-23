@@ -42,6 +42,8 @@ typedef enum _i2c_id_t {
 } i2c_id_t;
 
 /* ***** PUBLIC METHODS ***** */
+int32_t i2c_init(device_t *dev, driver_t *drv, uint16_t addr);
+
 /**
  * @brief Open and initialize an I2C device
  * @param dev      The device representing the I2C peripheral
@@ -50,6 +52,8 @@ typedef enum _i2c_id_t {
  * @param freq     The frequency of the i2c bus
  * @return 0 on success, -X for errors
  */
+int32_t i2c_open(driver_t *drv, uint16_t addr);
+
 int32_t i2c_open(device_t *dev, uint32_t id, uint16_t own_addr, uint32_t freq);
 
 /**

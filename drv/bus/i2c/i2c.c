@@ -128,43 +128,54 @@ int32_t i2c_open(device_t *dev, uint32_t id, uint16_t own_addr, uint32_t freq)
     return 0;
 }
 
-int32_t i2c_close(device_t *dev)
+int32_t i2c_close(driver_t *drv)
 {
-	i2c_device_t *i2c = (i2c_device_t*)dev->private;
+    if (drv == NULL)
+        return -1;
+    if (drv->state != DRV_OPENED)
+        return -2;
 
-	if (dev == NULL) return -1;
-
-	i2c = (i2c_device_t*)dev->private;
-
-	I2C_DeInit(i2c->hw);
-	if (i2c != NULL)
-		free(i2c);
-	dev->private = NULL;
-
-	return 0;
+    drv->state = DRV_CLOSED
 }
 
 /**
  * @brief Transfer I2C
  */
-int32_t i2c_transfer(device_t *dev, uint16_t addr, i2c_op_t op, uint8_t *buffer, uint16_t size, i2c_stop_cond_t stop_cond)
+int32_t i2c_transfer(driver_t *drv,
+        i2c_op_t op,
+        uint8_t buffer,
+        uint16_t length,
+        i2c_stop_t stop)
 {
-	i2c_device_t *i2c;
+    i2c_ops_t *ops = NULL;
+    i2c_hw_t *hw = NULL;
 
-	if (dev == NULL)
-		return -1;
-	i2c = (i2c_device_t *)dev->private;
+    if (drv == NULL)
+        return -1;
+    if (drv->state != DRV_OPENED)
+        return -2;
 
-	switch (op) {
-	case I2C_OP_READ:
-		return _i2c_read(i2c->hw, addr, buffer, size, stop_cond);
+    if (length == 0)
+        return 0;
 
-	case I2C_OP_WRITE:
-		return _i2c_write(i2c->hw, addr, buffer, size, stop_cond);
+    ops = (i2c_ops_t *) drv->dev->hw->ops;
 
-	default:
-		return -2;
-	}
+    while (!lock_get(drv->dev->lock))
+        ;
+    switch (op) {
+    case I2C_OP_WRITE:
+        ops->send(buffer, length, stop);
+        break;
+    case I2C_OP_READ:
+        ops->recv(buffer, length, stop);
+        break;
+    default:
+        lock_release(drv->dev->lock);
+        return -2;
+    }
+    lock_release(drv->dev->lock);
+
+    return length;
 }
 
 
@@ -323,7 +334,7 @@ int32_t _i2c_write(I2C_TypeDef* I2Cx, uint16_t addr, const uint8_t* buf,  uint32
 
 		default:
 			break;
-		}
+        }
     }
 
     return 0;
