@@ -1,0 +1,429 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<workbench version="2.0">
+<workbenchAdvisor/>
+<window>
+<fastViewData fastViewLocation="1024"/>
+<perspectiveBar/>
+<page focus="true" label="Workspace - CooCox CoBuilder">
+<editors>
+<editorArea activeWorkbook="org.eclipse.ui.internal.EditorStack@1d36912">
+<info part="DefaultEditorWorkbook">
+<folder appearance="1" expanded="2">
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
+<part id="0"/>
+<part id="1"/>
+<part id="2"/>
+<part id="3"/>
+<part id="4"/>
+<part id="5"/>
+</presentation>
+</folder>
+</info>
+<info part="org.eclipse.ui.internal.EditorStack@1d36912" ratio="0.5" ratioLeft="654" ratioRight="654" relationship="2" relative="DefaultEditorWorkbook">
+<folder appearance="1" expanded="2">
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
+<part id="0"/>
+<part id="3"/>
+<part id="1"/>
+<part id="2"/>
+<part id="4"/>
+<part id="5"/>
+<part id="6"/>
+</presentation>
+</folder>
+</info>
+</editorArea>
+<editor id="org.coocox.welcome.ui.WelcomePage" name="" partName="welcome" title="welcome" tooltip="" workbook="DefaultEditorWorkbook">
+<input factoryID="org.coocox.builder.ui.persistent.PersistentElementFactory">&#x0A;<org.coocox.welcome.ui.WelcomePage/>
+</input>
+</editor>
+<editor id="org.coocox.builder.ui.editors.ConfigEditor" name="" partName="Configuration" title="Configuration" tooltip="" workbook="DefaultEditorWorkbook">
+<input factoryID="org.coocox.builder.ui.persistent.PersistentElementFactory">
+<org.coocox.builder.ui.editors.ConfigEditor horizontalPosition="0" subTagIndex="1" verticalPosition="0"/>
+</input>
+</editor>
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="tricks.h" partName="tricks.h" path="Z:/nanoos/bridge-usart-i2c/include/tricks.h" title="tricks.h" tooltip="Z:/nanoos/bridge-usart-i2c/include/tricks.h" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/nanoos/include/tricks.h"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="44" selectionTopPixel="0"/>
+</editor>
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="device.h" partName="device.h" path="Z:/nanoos/bridge-usart-i2c/include/device.h" title="device.h" tooltip="Z:/nanoos/bridge-usart-i2c/include/device.h" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/nanoos/include/device.h"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="405" selectionTopPixel="0"/>
+</editor>
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="time.h" partName="time.h" path="Z:/nanoos/bridge-usart-i2c/lib/time.h" title="time.h" tooltip="Z:/nanoos/bridge-usart-i2c/lib/time.h" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/nanoos/lib/time.h"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="104" selectionTopPixel="0"/>
+</editor>
+<editor focus="true" id="org.eclipse.cdt.ui.editor.CEditor" name="main.c" partName="main.c" path="Z:/nanoos/bridge-usart-i2c/main.c" title="main.c" tooltip="Z:/nanoos/bridge-usart-i2c/main.c" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/nanoos/main.c"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="459" selectionTopPixel="96"/>
+</editor>
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="i2c.h" partName="i2c.h" path="Z:/nanoos/bridge-usart-i2c/drv/bus/i2c/i2c.h" title="i2c.h" tooltip="Z:/nanoos/bridge-usart-i2c/drv/bus/i2c/i2c.h" workbook="org.eclipse.ui.internal.EditorStack@1d36912">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/nanoos/drv/bus/i2c/i2c.h"/>
+<editorState selectionHorizontalPixel="0" selectionLength="4" selectionOffset="638" selectionTopPixel="384"/>
+</editor>
+<editor activePart="true" focus="true" id="org.eclipse.cdt.ui.editor.CEditor" name="usart.h" partName="usart.h" path="Z:/nanoos/bridge-usart-i2c/drv/serial/usart.h" title="usart.h" tooltip="Z:/nanoos/bridge-usart-i2c/drv/serial/usart.h" workbook="org.eclipse.ui.internal.EditorStack@1d36912">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/nanoos/drv/serial/usart.h"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="796" selectionTopPixel="0"/>
+</editor>
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="usart.c" partName="usart.c" path="Z:/nanoos/bridge-usart-i2c/drv/serial/usart.c" title="usart.c" tooltip="Z:/nanoos/bridge-usart-i2c/drv/serial/usart.c" workbook="org.eclipse.ui.internal.EditorStack@1d36912">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/nanoos/drv/serial/usart.c"/>
+<editorState selectionHorizontalPixel="0" selectionLength="51" selectionOffset="2973" selectionTopPixel="1408"/>
+</editor>
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="i2c.c" partName="i2c.c" path="Z:/nanoos/bridge-usart-i2c/drv/bus/i2c/i2c.c" title="i2c.c" tooltip="Z:/nanoos/bridge-usart-i2c/drv/bus/i2c/i2c.c" workbook="org.eclipse.ui.internal.EditorStack@1d36912">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/nanoos/drv/bus/i2c/i2c.c"/>
+<editorState selectionHorizontalPixel="0" selectionLength="3" selectionOffset="421" selectionTopPixel="3127"/>
+</editor>
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="time.c" partName="time.c" path="Z:/nanoos/bridge-usart-i2c/lib/time.c" title="time.c" tooltip="Z:/nanoos/bridge-usart-i2c/lib/time.c" workbook="org.eclipse.ui.internal.EditorStack@1d36912">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/nanoos/lib/time.c"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="171" selectionTopPixel="0"/>
+</editor>
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="syscalls.c" partName="syscalls.c" path="Z:/nanoos/bridge-usart-i2c/syscalls/syscalls.c" title="syscalls.c" tooltip="Z:/nanoos/bridge-usart-i2c/syscalls/syscalls.c" workbook="org.eclipse.ui.internal.EditorStack@1d36912">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/nanoos/syscalls/syscalls.c"/>
+<editorState selectionHorizontalPixel="0" selectionLength="24" selectionOffset="1864" selectionTopPixel="1056"/>
+</editor>
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="console.h" partName="console.h" path="Z:/nanoos/bridge-usart-i2c/lib/console.h" title="console.h" tooltip="Z:/nanoos/bridge-usart-i2c/lib/console.h" workbook="org.eclipse.ui.internal.EditorStack@1d36912">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/nanoos/lib/console.h"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="102" selectionTopPixel="0"/>
+</editor>
+</editors>
+<views>
+<view id="org.coocox.builder.ui.views.ProjectView" partName="Project">
+<viewState CommonNavigator.LINKING_ENABLED="0" horizontalPosition="0" org.eclipse.ui.navigator.resources.workingSets.showTopLevelWorkingSets="0" verticalPosition="30">
+<expanded>
+<element path="/nanoos"/>
+<element path="/nanoos/arch"/>
+<element path="/nanoos/arch/stm32"/>
+<element path="/nanoos/arch/stm32/f1"/>
+<element path="/nanoos/arch/stm32/f1/stm_lib"/>
+<element path="/nanoos/arch/stm32/f1/stm_lib/inc"/>
+<element path="/nanoos/cmsis"/>
+<element path="/nanoos/cmsis_boot"/>
+<element path="/nanoos/drv"/>
+<element path="/nanoos/drv/bus"/>
+<element path="/nanoos/drv/bus/i2c"/>
+<element path="/nanoos/drv/serial"/>
+<element path="/nanoos/include"/>
+<element path="/nanoos/lib"/>
+<element path="/nanoos/nanoos"/>
+</expanded>
+<selection>
+<element path="/nanoos/lib/console.h"/>
+</selection>
+</viewState>
+</view>
+<view id="org.coocox.component.ui.ComponentView" partName="Components">
+<viewState/>
+</view>
+<view id="org.eclipse.ui.console.ConsoleView" partName="Console">
+<viewState/>
+</view>
+<view id="org.eclipse.ui.views.ContentOutline" partName="Outline">
+<viewState/>
+</view>
+<view id="org.coocox.component.ui.Help" partName="Help">
+<viewState/>
+</view>
+</views>
+<perspectives activePart="org.eclipse.ui.console.ConsoleView" activePerspective="org.coocox.builder.perspective.CoBuilder">
+<perspective editorAreaTrimState="2" editorAreaVisible="1" fixed="0" version="0.016">
+<descriptor class="org.coocox.builder.ui.PerspectiveCoBuilder" id="org.coocox.builder.perspective.CoBuilder" label="CooCox CoBuilder"/>
+<alwaysOnActionSet id="org.coocox.component.ui.actionSet"/>
+<alwaysOnActionSet id="org.coocox.welcome.ui.actionSet"/>
+<alwaysOnActionSet id="org.eclipse.search.searchActionSet"/>
+<alwaysOnActionSet id="org.eclipse.ui.edit.text.actionSet.annotationNavigation"/>
+<alwaysOnActionSet id="org.eclipse.ui.edit.text.actionSet.navigation"/>
+<alwaysOnActionSet id="org.eclipse.ui.edit.text.actionSet.convertLineDelimitersTo"/>
+<alwaysOnActionSet id="org.eclipse.ui.actionSet.keyBindings"/>
+<alwaysOnActionSet id="org.eclipse.ui.actionSet.openFiles"/>
+<alwaysOnActionSet id="org.eclipse.debug.ui.breakpointActionSet"/>
+<alwaysOnActionSet id="org.coocox.userspace.actionSet"/>
+<hide_menu_item_id id="org.coocox.codebugger.configuration.showMemoryAction"/>
+<hide_menu_item_id id="org.eclipse.jdt.ui.refactoring.menu"/>
+<hide_menu_item_id id="org.coocox.codebugger.configuration.ShowDisassemblyAction"/>
+<hide_menu_item_id id="org.coocox.codebugger.configuration.showExpressionsAction"/>
+<hide_menu_item_id id="org.coocox.codebugger.configuration.showDebugAction"/>
+<hide_menu_item_id id="org.coocox.codebugger.configuration.showConsoleAction"/>
+<hide_menu_item_id id="org.eclipse.cdt.debug.internal.ui.actions.ToggleInstructionStepModeAction"/>
+<hide_menu_item_id id="org.eclipse.jdt.ui.source.menu"/>
+<hide_menu_item_id id="org.coocox.codebugger.configuration.showMemoryBrowserAction"/>
+<hide_menu_item_id id="org.coocox.codebugger.configuration.showVariablesAction"/>
+<hide_menu_item_id id="org.coocox.builder.ui.openProjectExplorerAction"/>
+<hide_menu_item_id id="org.coocox.codebugger.trace.actions.ShowTraceControlAction"/>
+<hide_menu_item_id id="org.eclipse.debug.ui.commands.TerminateAndRelaunch"/>
+<hide_menu_item_id id="org.coocox.codebugger.configuration.showRegistersAction"/>
+<hide_toolbar_item_id id="org.eclipse.cdt.debug.internal.ui.actions.ToggleInstructionStepModeAction"/>
+<hide_toolbar_item_id id="org.eclipse.ui.edit.text.toggleShowSelectedElementOnly"/>
+<hide_toolbar_item_id id="org.eclipse.debug.ui.commands.TerminateAndRelaunch"/>
+<view id="org.coocox.component.ui.ComponentView"/>
+<view id="org.coocox.builder.ui.views.ProjectView"/>
+<view id="org.coocox.component.ui.Help"/>
+<view id="org.eclipse.ui.views.ContentOutline"/>
+<view id="org.eclipse.ui.console.ConsoleView"/>
+<fastViewBars/>
+<layout>
+<mainWindow>
+<info folder="true" part="org.eclipse.ui.internal.ViewStack@1cee0c8">
+<folder activePageID="org.coocox.component.ui.ComponentView" appearance="2" expanded="2">
+<page content="org.coocox.component.ui.ComponentView" label="Components"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
+<part id="0"/>
+</presentation>
+</folder>
+</info>
+<info folder="true" part="stickyFolderRight" ratio="0.75" ratioLeft="750" ratioRight="250" relationship="2" relative="org.eclipse.ui.internal.ViewStack@1cee0c8">
+<folder appearance="2" expanded="2">
+<page content="org.eclipse.help.ui.HelpView" label="LabelNotFound"/>
+<page content="org.eclipse.ui.internal.introview" label="LabelNotFound"/>
+</folder>
+</info>
+<info folder="true" part="org.eclipse.ui.internal.ViewStack@11a3613" ratio="0.7238806" ratioLeft="679" ratioRight="259" relationship="4" relative="org.eclipse.ui.internal.ViewStack@1cee0c8">
+<folder activePageID="org.eclipse.ui.console.ConsoleView" appearance="2" expanded="2">
+<page content="org.eclipse.ui.console.ConsoleView" label="Console"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
+<part id="0"/>
+</presentation>
+</folder>
+</info>
+<info part="org.coocox.builder.ui.exampleView" ratio="0.14667365" ratioLeft="280" ratioRight="1629" relationship="2" relative="org.eclipse.ui.internal.ViewStack@1cee0c8"/>
+<info folder="true" part="org.eclipse.ui.internal.ViewStack@16bbeaf" ratio="0.7192308" ratioLeft="561" ratioRight="219" relationship="2" relative="org.coocox.builder.ui.exampleView">
+<folder activePageID="org.eclipse.ui.views.ContentOutline" appearance="2" expanded="2">
+<page content="org.coocox.component.ui.Help" label="Help"/>
+<page content="org.eclipse.ui.views.ContentOutline" label="Outline"/>
+<page content="org.eclipse.debug.ui.BreakpointView" label="LabelNotFound"/>
+<page content="org.coocox.coassistant.view.CoAssistantView" label="LabelNotFound"/>
+<page content="org.coocox.builder.ui.MoreExampleView" label="LabelNotFound"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
+<part id="0"/>
+<part id="1"/>
+</presentation>
+</folder>
+</info>
+<info part="org.eclipse.ui.editorss" ratio="0.4499205" ratioLeft="283" ratioRight="346" relationship="4" relative="org.coocox.builder.ui.exampleView"/>
+<info folder="true" part="org.eclipse.ui.internal.ViewStack@1079781" ratio="0.3688394" ratioLeft="232" ratioRight="397" relationship="4" relative="org.eclipse.ui.internal.ViewStack@1cee0c8">
+<folder activePageID="org.coocox.builder.ui.views.ProjectView" appearance="2" expanded="2">
+<page content="org.coocox.builder.ui.views.ProjectView" label="Project"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
+<part id="0"/>
+</presentation>
+</folder>
+</info>
+</mainWindow>
+</layout>
+</perspective>
+</perspectives>
+<workingSets/>
+<navigationHistory>
+<editors>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/nanoos/drv/bus/i2c/i2c.c"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/nanoos/drv/bus/i2c/i2c.h"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/nanoos/drv/serial/usart.h"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/nanoos/drv/serial/usart.c"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/nanoos/main.c"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/nanoos/include/device.h"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/nanoos/lib/console.h"/>
+</editors>
+<item historyLabel="usart.c" index="3">
+<position info="not_deleted" x="3218" y="0"/>
+</item>
+<item historyLabel="usart.c" index="3">
+<position info="not_deleted" x="3025" y="0"/>
+</item>
+<item historyLabel="main.c" index="4">
+<position info="not_deleted" x="1087" y="6"/>
+</item>
+<item historyLabel="usart.h" index="2">
+<position info="not_deleted" x="462" y="0"/>
+</item>
+<item historyLabel="main.c" index="4">
+<position info="not_deleted" x="545" y="0"/>
+</item>
+<item historyLabel="i2c.c" index="0">
+<position info="not_deleted" x="88" y="233"/>
+</item>
+<item historyLabel="i2c.c" index="0">
+<position info="not_deleted" x="3699" y="12"/>
+</item>
+<item historyLabel="i2c.c" index="0">
+<position info="not_deleted" x="4362" y="0"/>
+</item>
+<item historyLabel="i2c.c" index="0">
+<position info="not_deleted" x="3406" y="9"/>
+</item>
+<item historyLabel="i2c.h" index="1">
+<position info="not_deleted" x="1418" y="0"/>
+</item>
+<item historyLabel="main.c" index="4">
+<position info="not_deleted" x="1882" y="0"/>
+</item>
+<item historyLabel="i2c.h" index="1">
+<position info="not_deleted" x="833" y="0"/>
+</item>
+<item historyLabel="device.h" index="5">
+<position info="not_deleted" x="538" y="15"/>
+</item>
+<item historyLabel="main.c" index="4">
+<position info="not_deleted" x="365" y="0"/>
+</item>
+<item historyLabel="usart.c" index="3">
+<position info="not_deleted" x="3050" y="74"/>
+</item>
+<item historyLabel="usart.h" index="2">
+<position info="not_deleted" x="800" y="67"/>
+</item>
+<item historyLabel="main.c" index="4">
+<position info="not_deleted" x="1181" y="0"/>
+</item>
+<item historyLabel="usart.h" index="2">
+<position info="not_deleted" x="860" y="0"/>
+</item>
+<item historyLabel="main.c" index="4">
+<position info="not_deleted" x="1181" y="0"/>
+</item>
+<item historyLabel="main.c" index="4">
+<position info="not_deleted" x="1405" y="0"/>
+</item>
+<item historyLabel="main.c" index="4">
+<position info="not_deleted" x="1873" y="0"/>
+</item>
+<item historyLabel="main.c" index="4">
+<position info="not_deleted" x="1866" y="0"/>
+</item>
+<item historyLabel="main.c" index="4">
+<position info="not_deleted" x="1781" y="0"/>
+</item>
+<item historyLabel="main.c" index="4">
+<position info="not_deleted" x="1443" y="40"/>
+</item>
+<item historyLabel="main.c" index="4">
+<position info="not_deleted" x="1658" y="0"/>
+</item>
+<item historyLabel="main.c" index="4">
+<position info="not_deleted" x="1395" y="0"/>
+</item>
+<item historyLabel="usart.c" index="3">
+<position info="not_deleted" x="2880" y="83"/>
+</item>
+<item historyLabel="console.h" index="6">
+<position info="not_deleted" x="102" y="0"/>
+</item>
+<item historyLabel="usart.c" index="3">
+<position info="not_deleted" x="2880" y="83"/>
+</item>
+<item historyLabel="device.h" index="5">
+<position info="not_deleted" x="354" y="0"/>
+</item>
+<item historyLabel="usart.c" index="3">
+<position info="not_deleted" x="715" y="49"/>
+</item>
+<item historyLabel="device.h" index="5">
+<position info="not_deleted" x="405" y="0"/>
+</item>
+<item historyLabel="i2c.c" index="0">
+<position info="not_deleted" x="8576" y="0"/>
+</item>
+<item historyLabel="main.c" index="4">
+<position info="not_deleted" x="315" y="0"/>
+</item>
+<item historyLabel="i2c.h" index="1">
+<position info="not_deleted" x="638" y="4"/>
+</item>
+<item historyLabel="main.c" index="4">
+<position info="not_deleted" x="204" y="0"/>
+</item>
+<item historyLabel="i2c.c" index="0">
+<position info="not_deleted" x="1488" y="8"/>
+</item>
+<item historyLabel="main.c" index="4">
+<position info="not_deleted" x="216" y="0"/>
+</item>
+<item historyLabel="main.c" index="4">
+<position info="not_deleted" x="194" y="0"/>
+</item>
+<item historyLabel="main.c" index="4">
+<position info="not_deleted" x="400" y="70"/>
+</item>
+<item historyLabel="main.c" index="4">
+<position info="not_deleted" x="1464" y="0"/>
+</item>
+<item historyLabel="main.c" index="4">
+<position info="not_deleted" x="1656" y="1"/>
+</item>
+<item historyLabel="main.c" index="4">
+<position info="not_deleted" x="437" y="0"/>
+</item>
+<item historyLabel="usart.h" index="2">
+<position info="not_deleted" x="361" y="4"/>
+</item>
+<item historyLabel="i2c.h" index="1">
+<position info="not_deleted" x="638" y="4"/>
+</item>
+<item historyLabel="usart.h" index="2">
+<position info="not_deleted" x="184" y="9"/>
+</item>
+<item historyLabel="main.c" index="4">
+<position info="not_deleted" x="459" y="0"/>
+</item>
+<item historyLabel="i2c.c" index="0">
+<position info="not_deleted" x="421" y="3"/>
+</item>
+<item historyLabel="usart.c" index="3">
+<position info="not_deleted" x="2973" y="51"/>
+</item>
+<item active="true" historyLabel="usart.h" index="2">
+<position info="not_deleted" x="800" y="67"/>
+</item>
+</navigationHistory>
+<input factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/" type="8"/>
+</page>
+<workbenchWindowAdvisor/>
+<actionBarAdvisor/>
+</window>
+<mruList>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="stm32f10x_usart.h" tooltip="nanoos/arch/stm32/f1/stm_lib/inc/stm32f10x_usart.h">
+<persistable path="/nanoos/arch/stm32/f1/stm_lib/inc/stm32f10x_usart.h"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="console.h" tooltip="nanoos/lib/console.h">
+<persistable path="/nanoos/lib/console.h"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="syscalls.c" tooltip="nanoos/syscalls/syscalls.c">
+<persistable path="/nanoos/syscalls/syscalls.c"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="time.c" tooltip="nanoos/lib/time.c">
+<persistable path="/nanoos/lib/time.c"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="usart.c" tooltip="nanoos/drv/serial/usart.c">
+<persistable path="/nanoos/drv/serial/usart.c"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="usart.h" tooltip="nanoos/drv/serial/usart.h">
+<persistable path="/nanoos/drv/serial/usart.h"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="main.c" tooltip="nanoos/main.c">
+<persistable path="/nanoos/main.c"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="time.h" tooltip="nanoos/lib/time.h">
+<persistable path="/nanoos/lib/time.h"/>
+</file>
+<file factoryID="org.eclipse.cdt.ui.ExternalEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="time.h" tooltip="C:\Program Files (x86)\GNU Tools ARM Embedded\4.9 2015q1\arm-none-eabi\include\time.h">
+<persistable path="C:\Program Files (x86)\GNU Tools ARM Embedded\4.9 2015q1\arm-none-eabi\include\time.h" project="nanoos"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="device.h" tooltip="nanoos/include/device.h">
+<persistable path="/nanoos/include/device.h"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="i2c.h" tooltip="nanoos/drv/bus/i2c/i2c.h">
+<persistable path="/nanoos/drv/bus/i2c/i2c.h"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="stm32f10x.h" tooltip="nanoos/cmsis_boot/stm32f10x.h">
+<persistable path="/nanoos/cmsis_boot/stm32f10x.h"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="tricks.h" tooltip="nanoos/include/tricks.h">
+<persistable path="/nanoos/include/tricks.h"/>
+</file>
+<file factoryID="org.eclipse.ui.ide.FileStoreEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="stm32f10x_gpio.h" tooltip="Z:\nanoos\bridge-usart-i2c\stm_lib\inc\stm32f10x_gpio.h">
+<persistable uri="file:/Z:/nanoos/bridge-usart-i2c/stm_lib/inc/stm32f10x_gpio.h"/>
+</file>
+<file factoryID="org.eclipse.cdt.ui.ExternalEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="stm32f4xx_hal_def.h" tooltip="Z:\nanoos\bridge-usart-i2c\Cube_lib\inc\stm32f4xx_hal_def.h">
+<persistable path="Z:\nanoos\bridge-usart-i2c\Cube_lib\inc\stm32f4xx_hal_def.h" project="nanoos"/>
+</file>
+</mruList>
+</workbench>
