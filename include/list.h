@@ -2,9 +2,9 @@
 #define _LIST_H
 
 /* ***** TYPES ***** */
-struct typedef struct _list_t {
-	struct _list_t next;
-	struct _list_t prev;
+typedef struct _list_t {
+	struct _list_t *next;
+	struct _list_t *prev;
 } list_t;
 
 

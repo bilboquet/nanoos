@@ -9,8 +9,8 @@
 
 /* ***** TYPES ***** */
 typedef enum _device_type_t {
-	DEVICE_I2C = 0, /** I2C device */
-	DEVICE_USART,   /** USART device */
+    DEVICE_I2C = 0, /** I2C device */
+    DEVICE_USART, /** USART device */
 } device_type_t;
 
 typedef enum _pm_state_t {
@@ -23,29 +23,24 @@ typedef enum _device_state_t {
     UNINITIALIZED = 0,
     INITIALIZED,
     READY,
-    BUSY
+    DRV_OPENED,
+    BUSY,
+    DRV_CLOSED
 } device_state_t;
 
-typedef enum _device_pm_state_t {
-    PM_OFF = 0,
-    PM_LOW,
-    PM_FULL
-} device_pm_state_t;
-
-	
+typedef struct _device_t device_t;
 typedef struct _device_t {
-	/* Device name */
-	char devname[16];
-	/* Device type */
-	device_type_t type; 
-	/* Device Id */
-	int id;
+    /* Device name */
+    char devname[16];
+    /* Device type */
+    device_type_t type;
+    device_state_t state;
 
     lock_t lock; /* Device protection against multiple access */
     uint32_t irq; /* IRQ id */
     bool use_dma; /* Indication on dma usage by device */
     bool async; /* If async is set, asynchronous mode use */
-    device_t *drv; /*  Driver using this device */
+    device_t *drv; /* Driver using this device */
     device_t *dev; /* Underlying device to use */
 
     void *private; /* Hardware specific */
@@ -59,9 +54,8 @@ typedef struct _device_t {
     int32_t (*pm)(device_t *dev, device_pm_state_t newstate);
 
     /* Device specific operation */
-    void *ops;           
+    void *ops;
 } device_t;
-
 
 /* ***** PUBLIC METHODS ***** */
 /**
@@ -80,6 +74,6 @@ int32_t device_pm(device_t *dev, device_pm_state_t state);
 
 int32_t device_list(device_t *dev);
 
-int32_t driver_attach(driver_t *drv, device_t *dev);
+int32_t driver_attach(device_t *drv, device_t *dev);
 
 #endif /* ! _DEVICE_H */

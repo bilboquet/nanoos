@@ -25,6 +25,7 @@ typedef struct _device_op_usart_t {
 } device_op_usart_t;
 
 /* ***** PUBLIC METHODS ***** */
+int32_t usart_init();
 int32_t usart_open(device_t *dev, uint32_t id, uint32_t baudrate);
 
 int32_t usart_close(device_t *dev);

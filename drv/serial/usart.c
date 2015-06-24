@@ -111,16 +111,16 @@ int32_t usart_close(device_t *dev)
 
 int32_t usart_send(device_t *dev, uint16_t data)
 {
-	USART_SendData((USART_TypeDef*) (dev->hw), data);
-	while (USART_GetFlagStatus((USART_TypeDef*) (dev->hw), USART_FLAG_TXE) == RESET)
+	USART_SendData((USART_TypeDef*) (dev->private), data);
+	while (USART_GetFlagStatus((USART_TypeDef*) (dev->private), USART_FLAG_TXE) == RESET)
 		;
 }
 
 int32_t usart_recv(device_t *dev, uint16_t *data)
 {
 	int32_t status = -1;
-	if (USART_GetFlagStatus((USART_TypeDef*) (dev->hw), USART_FLAG_RXNE)) {
-		*data = USART_ReceiveData((USART_TypeDef*) (dev->hw));
+	if (USART_GetFlagStatus((USART_TypeDef*) (dev->private), USART_FLAG_RXNE)) {
+		*data = USART_ReceiveData((USART_TypeDef*) (dev->private));
 		status = 0;
 	}
 	return status;

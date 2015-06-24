@@ -71,24 +71,24 @@
     <File name="arch/stm32/f1/stm_lib" path="" type="2"/>
     <File name="arch/stm32/f4" path="" type="2"/>
     <File name="nanoos/nanoos.elf.xcodeproj/project.pbxproj" path="nanoos/nanoos.elf.xcodeproj/project.pbxproj" type="1"/>
-    <File name="arch/stm32/f1/stm_lib/src/stm32f10x_dma.c" path="arch/stm32/f1/stm_lib/src/stm32f10x_dma.c" type="1"/>
     <File name="cmsis_boot" path="" type="2"/>
-    <File name="nanoos" path="" type="2"/>
+    <File name="arch/stm32/f1/stm_lib/src/stm32f10x_dma.c" path="arch/stm32/f1/stm_lib/src/stm32f10x_dma.c" type="1"/>
     <File name="nanoos/Debug/bin" path="" type="2"/>
-    <File name="arch/stm32/f1/stm_lib/inc/stm32f10x_dma.h" path="arch/stm32/f1/stm_lib/inc/stm32f10x_dma.h" type="1"/>
+    <File name="nanoos" path="" type="2"/>
     <File name="nanoos/Debug/obj" path="" type="2"/>
+    <File name="arch/stm32/f1/stm_lib/inc/stm32f10x_dma.h" path="arch/stm32/f1/stm_lib/inc/stm32f10x_dma.h" type="1"/>
     <File name="nanoos/Debug" path="" type="2"/>
     <File name="arch/stm32/f1/stm_lib/inc" path="" type="2"/>
     <File name="cmsis_boot/startup" path="" type="2"/>
-    <File name="cmsis/core_cmFunc.h" path="cmsis/core_cmFunc.h" type="1"/>
+    <File name="cmsis/core_cmFunc.h" path="arch/stm32/f1/cmsis/core_cmFunc.h" type="1"/>
     <File name="arch/stm32/f1/stm_lib/inc/misc.h" path="arch/stm32/f1/stm_lib/inc/misc.h" type="1"/>
     <File name="drv/bus" path="" type="2"/>
     <File name="nanoos/Debug/obj/startup_stm32f10x_md.o" path="nanoos/Debug/obj/startup_stm32f10x_md.o" type="1"/>
-    <File name="cmsis_boot/stm32f10x.h" path="cmsis_boot/stm32f10x.h" type="1"/>
+    <File name="cmsis_boot/stm32f10x.h" path="arch/stm32/f1/cmsis_boot/stm32f10x_conf.h" type="1"/>
     <File name="drv/bus/i2c/i2c.c" path="drv/bus/i2c/i2c.c" type="1"/>
-    <File name="cmsis_boot/stm32f10x_conf.h" path="cmsis_boot/stm32f10x_conf.h" type="1"/>
-    <File name="syscalls/syscalls.c" path="syscalls/syscalls.c" type="1"/>
+    <File name="cmsis_boot/stm32f10x_conf.h" path="arch/stm32/f1/cmsis_boot/stm32f10x_conf.h" type="1"/>
     <File name="arch/stm32/f1/stm_lib/src/stm32f10x_usart.c" path="arch/stm32/f1/stm_lib/src/stm32f10x_usart.c" type="1"/>
+    <File name="syscalls/syscalls.c" path="syscalls/syscalls.c" type="1"/>
     <File name="include/device.h" path="include/device.h" type="1"/>
     <File name="drv/bus/i2c" path="" type="2"/>
     <File name="arch" path="" type="2"/>
@@ -96,18 +96,18 @@
     <File name="drv" path="" type="2"/>
     <File name="arch/stm32/f1/stm_lib/src/stm32f10x_gpio.c" path="arch/stm32/f1/stm_lib/src/stm32f10x_gpio.c" type="1"/>
     <File name="drv/bus/i2c/i2c.h" path="drv/bus/i2c/i2c.h" type="1"/>
-    <File name="cmsis_boot/startup/startup_stm32f10x_md.c" path="cmsis_boot/startup/startup_stm32f10x_md.c" type="1"/>
     <File name="drv/serial/usart.h" path="drv/serial/usart.h" type="1"/>
+    <File name="cmsis_boot/startup/startup_stm32f10x_md.c" path="arch/stm32/f1/cmsis_boot/startup/startup_stm32f10x_md.c" type="1"/>
     <File name="arch/stm32/f1/stm_lib/src/stm32f10x_adc.c" path="arch/stm32/f1/stm_lib/src/stm32f10x_adc.c" type="1"/>
     <File name="include/common.h" path="include/common.h" type="1"/>
     <File name="lib" path="" type="2"/>
     <File name="arch/stm32/f1/stm_lib/src/stm32f10x_spi.c" path="arch/stm32/f1/stm_lib/src/stm32f10x_spi.c" type="1"/>
-    <File name="cmsis_boot/system_stm32f10x.c" path="cmsis_boot/system_stm32f10x.c" type="1"/>
-    <File name="arch/stm32/f1/stm_lib/inc/stm32f10x_adc.h" path="arch/stm32/f1/stm_lib/inc/stm32f10x_adc.h" type="1"/>
+    <File name="cmsis_boot/system_stm32f10x.c" path="arch/stm32/f1/cmsis_boot/system_stm32f10x.c" type="1"/>
     <File name="lib/time.h" path="lib/time.h" type="1"/>
-    <File name="cmsis/core_cmInstr.h" path="cmsis/core_cmInstr.h" type="1"/>
+    <File name="arch/stm32/f1/stm_lib/inc/stm32f10x_adc.h" path="arch/stm32/f1/stm_lib/inc/stm32f10x_adc.h" type="1"/>
+    <File name="cmsis/core_cmInstr.h" path="arch/stm32/f1/cmsis/core_cmInstr.h" type="1"/>
     <File name="arch/stm32/f1/stm_lib/inc/stm32f10x_rcc.h" path="arch/stm32/f1/stm_lib/inc/stm32f10x_rcc.h" type="1"/>
-    <File name="cmsis/core_cm3.h" path="cmsis/core_cm3.h" type="1"/>
+    <File name="cmsis/core_cm3.h" path="arch/stm32/f1/cmsis/core_cm3.h" type="1"/>
     <File name="STM32_Nucleo/stm32f1xx/stm32f1xx_nucleo.c" path="STM32_Nucleo/stm32f1xx/stm32f1xx_nucleo.c" type="1"/>
     <File name="uart2i2c" path="" type="2"/>
     <File name="include" path="" type="2"/>
@@ -123,8 +123,8 @@
     <File name="drv/serial" path="" type="2"/>
     <File name="drv/serial/usart.c" path="drv/serial/usart.c" type="1"/>
     <File name="include/tricks.h" path="include/tricks.h" type="1"/>
-    <File name="cmsis_boot/system_stm32f10x.h" path="cmsis_boot/system_stm32f10x.h" type="1"/>
     <File name="arch/stm32/f1/stm_lib/inc/stm32f10x_usart.h" path="arch/stm32/f1/stm_lib/inc/stm32f10x_usart.h" type="1"/>
+    <File name="cmsis_boot/system_stm32f10x.h" path="arch/stm32/f1/cmsis_boot/system_stm32f10x.h" type="1"/>
     <File name="arch/stm32/f1" path="" type="2"/>
     <File name="arch/stm32/f1/stm_lib/src/stm32f10x_rcc.c" path="arch/stm32/f1/stm_lib/src/stm32f10x_rcc.c" type="1"/>
     <File name="arch/stm32/f1/stm_lib/inc/stm32f10x_exti.h" path="arch/stm32/f1/stm_lib/inc/stm32f10x_exti.h" type="1"/>
@@ -132,8 +132,8 @@
     <File name="arch/stm32/f1/stm_lib/src/stm32f10x_i2c.c" path="arch/stm32/f1/stm_lib/src/stm32f10x_i2c.c" type="1"/>
     <File name="arch/stm32/f1/stm_lib/src/misc.c" path="arch/stm32/f1/stm_lib/src/misc.c" type="1"/>
     <File name="arch/stm32/f1/stm_lib/src" path="" type="2"/>
-    <File name="STM32_Nucleo/stm32f1xx/stm32f1xx_nucleo.h" path="STM32_Nucleo/stm32f1xx/stm32f1xx_nucleo.h" type="1"/>
     <File name="arch/stm32/f1/stm_lib/inc/stm32f10x_spi.h" path="arch/stm32/f1/stm_lib/inc/stm32f10x_spi.h" type="1"/>
+    <File name="STM32_Nucleo/stm32f1xx/stm32f1xx_nucleo.h" path="STM32_Nucleo/stm32f1xx/stm32f1xx_nucleo.h" type="1"/>
     <File name="STM32_Nucleo" path="" type="2"/>
     <File name="main.c" path="main.c" type="1"/>
     <File name="nanoos/Debug/obj/history.xml" path="nanoos/Debug/obj/history.xml" type="1"/>

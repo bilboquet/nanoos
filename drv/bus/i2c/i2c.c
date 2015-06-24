@@ -51,23 +51,24 @@ int32_t _i2c_write(I2C_TypeDef* I2Cx, uint16_t addr, const uint8_t *buf, uint32_
 
 
 /* ***** PUBLIC METHODS ***** */
-int32_t i2c_open(device_t *dev, uint32_t id, uint16_t own_addr, uint32_t freq)
+int32_t i2c_open(device_t *drv, i2c_param_t *params)
+//int32_t i2c_open(device_t *dev, uint32_t id, uint16_t own_addr, uint32_t freq)
 {
 	I2C_InitTypeDef _i2c_init;
 	GPIO_InitTypeDef _i2c_gpio;
 	i2c_device_t *i2c = NULL;
 
-	if (dev == NULL)
+	if (drv == NULL)
 		return -1;
 
-	dev->private = malloc(sizeof(i2c_device_t));
-	i2c = (i2c_device_t *)dev->private;
+	drv->private = malloc(sizeof(i2c_device_t));
+	i2c = (i2c_device_t *)drv->private;
 	if (i2c == NULL)
 		return -1;
 
 	switch (id) {
 	case ID_I2C1:
-		dev->id = id;
+		drv->id = id;
 		i2c->hw = I2C1;
 
 		/* i2c 1 */
@@ -96,7 +97,7 @@ int32_t i2c_open(device_t *dev, uint32_t id, uint16_t own_addr, uint32_t freq)
 		break;
 
 	case ID_I2C2:
-		dev->id = id;
+		drv->id = id;
 		i2c->hw = I2C2;
 
 		/* i2c 2 */
@@ -118,34 +119,37 @@ int32_t i2c_open(device_t *dev, uint32_t id, uint16_t own_addr, uint32_t freq)
 
     _i2c_init.I2C_Mode = I2C_Mode_I2C;
     _i2c_init.I2C_DutyCycle = I2C_DutyCycle_2;
-    _i2c_init.I2C_OwnAddress1 = own_addr;
+    _i2c_init.I2C_OwnAddress1 = params->address;
     _i2c_init.I2C_Ack = I2C_Ack_Enable;
     _i2c_init.I2C_AcknowledgedAddress = I2C_AcknowledgedAddress_7bit;
-    _i2c_init.I2C_ClockSpeed = freq;
+    _i2c_init.I2C_ClockSpeed = params->freq;
     I2C_Cmd(i2c->hw, ENABLE);
     I2C_Init(i2c->hw, &_i2c_init);
 
     return 0;
 }
 
-int32_t i2c_close(driver_t *drv)
+int32_t i2c_close(device_t *drv)
 {
     if (drv == NULL)
         return -1;
     if (drv->state != DRV_OPENED)
         return -2;
 
-    drv->state = DRV_CLOSED
+    drv->state = DRV_CLOSED;
+    /*TODO: check for any remaining lock
+     * return -3 ou remove the lock ?*/
+    return 0;
 }
 
 /**
  * @brief Transfer I2C
  */
-int32_t i2c_transfer(driver_t *drv,
+int32_t i2c_transfer(device_t *drv,
         i2c_op_t op,
         uint8_t buffer,
         uint16_t length,
-        i2c_stop_t stop)
+        i2c_stop_cond_t stop)
 {
     i2c_ops_t *ops = NULL;
     i2c_hw_t *hw = NULL;

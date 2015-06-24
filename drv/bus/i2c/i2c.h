@@ -2,6 +2,7 @@
 #define _DRV_I2C_H
 
 /* ***** INCLUDES ***** */
+#include <stdint.h>
 #include "../../../../include/device.h"
 #include "../../../../include/types.h"
 
@@ -11,38 +12,35 @@
 #include "stm32f4xx_hal_i2c.h"
 #endif /*STM32F429xx*/
 
-
 /* ***** TYPES ***** */
 typedef enum _i2c_op_t {
-	I2C_OP_READ = 0,
-	I2C_OP_WRITE
+    I2C_OP_READ = 0,
+    I2C_OP_WRITE
 } i2c_op_t;
 
 typedef enum _i2c_stop_cond_t {
-	I2C_STOP_COND_NOSTOP = 0,
-	I2C_STOP_COND_STOP
+    I2C_STOP_COND_NOSTOP = 0,
+    I2C_STOP_COND_STOP
 } i2c_stop_cond_t;
 
-typedef struct _device_hw_t {
-	void *hw;
-
-	uint16_t address;
-	uint32_t freq;
-} i2c_device_t;
+typedef struct _i2c_param_t {
+    uint16_t address;
+    uint32_t freq;
+} i2c_param_t;
 
 typedef struct _device_op_i2c_t {
-	int32_t (*open)(device_t *, uint32_t, uint16_t, uint32_t);
-	int32_t (*close)(device_t *);
-	int32_t (*transfer)(device_t *, uint16_t, i2c_op_t, uint8_t *, uint16_t, i2c_stop_cond_t);
+    int32_t (*open)(device_t *, i2c_param_t *params);
+    int32_t (*close)(device_t *);
+    int32_t (*transfer)(device_t *, uint16_t, i2c_op_t, uint8_t *, uint16_t, i2c_stop_cond_t);
 } device_op_i2c_t;
 
 typedef enum _i2c_id_t {
-	ID_I2C1,
-	ID_I2C2
+    ID_I2C1,
+    ID_I2C2
 } i2c_id_t;
 
 /* ***** PUBLIC METHODS ***** */
-int32_t i2c_init(device_t *dev, driver_t *drv, uint16_t addr);
+int32_t i2c_init(device_t *dev, device_t *drv, uint16_t addr);
 
 /**
  * @brief Open and initialize an I2C device
@@ -52,9 +50,8 @@ int32_t i2c_init(device_t *dev, driver_t *drv, uint16_t addr);
  * @param freq     The frequency of the i2c bus
  * @return 0 on success, -X for errors
  */
-int32_t i2c_open(driver_t *drv, uint16_t addr);
-
-int32_t i2c_open(device_t *dev, uint32_t id, uint16_t own_addr, uint32_t freq);
+int32_t i2c_open(device_t *drv, i2c_param_t *params);
+//int32_t i2c_open(device_t *dev, uint32_t id, uint16_t own_addr, uint32_t freq);
 
 /**
  * @brief Close an I2C device
@@ -73,6 +70,11 @@ int32_t i2c_close(device_t * dev);
  * @param stop_cond Does transfer stop after this transfer I2C_STOP_COND_{STOP|NOSTOP}
  * @return 0 on success, -X on errors
  */
-int32_t i2c_transfer(device_t *dev, uint16_t addr, i2c_op_t op, uint8_t *buffer, uint16_t size, i2c_stop_cond_t stop_cond);
+int32_t i2c_transfer(device_t *dev,
+        uint16_t addr,
+        i2c_op_t op,
+        uint8_t *buffer,
+        uint16_t size,
+        i2c_stop_cond_t stop_cond);
 
 #endif
