@@ -1,8 +1,6 @@
 /* ***** INCLUDES *****/
-#include "../../../../drv/bus/i2c/i2c.h"
+#include <stdlib.h>
 
-#include "../../../../include/common.h"
-#include "../../../../include/tricks.h"
 
 #ifdef STM32F10x
 #include "stm32f10x.h"
@@ -15,9 +13,12 @@
 #include "stm32f4xx_hal_gpio.h"
 #endif /*STM32F429xx*/
 
-#include "time.h"
+#include "../../../../drv/bus/i2c/i2c.h"
 
-#include <stdlib.h>
+#include "../../../../include/common.h"
+#include "../../../../include/lock.h"
+#include "../../../../include/tricks.h"
+#include "../../../../lib/time.h"
 
 /* ***** OPERATIONS **** */
 static device_op_i2c_t ops = {
@@ -152,7 +153,6 @@ int32_t i2c_transfer(device_t *drv,
         i2c_stop_cond_t stop)
 {
     i2c_ops_t *ops = NULL;
-    i2c_hw_t *hw = NULL;
 
     if (drv == NULL)
         return -1;
@@ -162,15 +162,15 @@ int32_t i2c_transfer(device_t *drv,
     if (length == 0)
         return 0;
 
-    ops = (i2c_ops_t *) drv->dev->hw->ops;
+    ops = (i2c_ops_t *) drv->dev->ops;
 
     while (!lock_get(drv->dev->lock))
         ;
     switch (op) {
-    case I2C_OP_WRITE:
+    case I2C_OP_SEND:
         ops->send(buffer, length, stop);
         break;
-    case I2C_OP_READ:
+    case I2C_OP_RECV:
         ops->recv(buffer, length, stop);
         break;
     default:

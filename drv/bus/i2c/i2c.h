@@ -14,8 +14,8 @@
 
 /* ***** TYPES ***** */
 typedef enum _i2c_op_t {
-    I2C_OP_READ = 0,
-    I2C_OP_WRITE
+    I2C_OP_RECV = 0,
+    I2C_OP_SEND
 } i2c_op_t;
 
 typedef enum _i2c_stop_cond_t {

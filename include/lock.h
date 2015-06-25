@@ -3,9 +3,10 @@
 
 /* ***** TYPES ***** */
 /** Lock structure */
-typedef struct _lock_t {
-	uint8_t lock;
-} lock_t;
+/*typedef struct _lock_t {
+ uint8_t lock;
+ } lock_t;*/
+typedef uint8_t lock_t;
 
 /* ***** MACROS ***** */
 /**
@@ -16,7 +17,7 @@ typedef struct _lock_t {
     while ((lock) != 0);        \
 	lock = 1;                   \
 } while (0)
-	
+
 /**
  * @brief Release a lock
  * @param lock  The lock to release

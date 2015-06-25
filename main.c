@@ -40,6 +40,7 @@ int main(void)
 		((device_op_i2c_t*) (i2c.ops))->transfer(&i2c, I2C_OP_READ, 0x76, buffer, length, I2C_STOP_COND_STOP);
 
 		// Forward answer from i2c slave to host
+		/*TODO: move the loop inside usart_send*/
 		int count = 0;
 		uint16_t *data;
 		while (count < length - 1) {
