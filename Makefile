@@ -1,6 +1,11 @@
 includes = $(find . -type f -name '*.h')
+objs = main.o
+CC = arm-none-eabi-gcc
 
-all: doc
+all: nanoos.bin 
+
+nanoos.bin: $(objs)
+	$(CC) -o nanoos.bin $^
 
 .PHONY: doc
 doc:

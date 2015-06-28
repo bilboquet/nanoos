@@ -1,5 +1,8 @@
 #ifndef _DRV_I2C_H
 #define _DRV_I2C_H
+/** \file i2c.h
+ * Definition of the device_i2c_t type that allows to manage i2c buses.
+ */
 
 /* ***** INCLUDES ***** */
 #include <stdint.h>
@@ -28,10 +31,16 @@ typedef struct _i2c_param_t {
     uint32_t freq;
 } i2c_param_t;
 
+
+/**
+ * Possible operations on an i2c device
+ */
 typedef struct _device_op_i2c_t {
-    int32_t (*open)(device_t *, i2c_param_t *params);
-    int32_t (*close)(device_t *);
+    device_op_t base; /**< inherited operations */
+
+    /* dedicated operation on device */
     int32_t (*transfer)(device_t *, uint16_t, i2c_op_t, uint8_t *, uint16_t, i2c_stop_cond_t);
+
 } device_op_i2c_t;
 
 typedef enum _i2c_id_t {
