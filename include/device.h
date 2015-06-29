@@ -83,9 +83,9 @@ typedef struct _device_t {
  * @param type    Device type
  * @param devname Device name
  */
-int32_t device_init(device_t *dev, device_type_t type, const char *devname);
+//int32_t device_init(device_t *dev, device_type_t type, const char *devname);
 
-int32_t device_open(device_t *dev, void *hw_params);
+//int32_t device_open(device_t *dev, void *hw_params);
 
 int32_t device_close(device_t *dev);
 

@@ -31,6 +31,7 @@ typedef struct _i2c_param_t {
     uint32_t freq;
 } i2c_param_t;
 
+typedef device_t device_i2c_t;
 
 /**
  * Possible operations on an i2c device

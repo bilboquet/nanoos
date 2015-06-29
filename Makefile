@@ -1,17 +1,18 @@
-includes = $(find . -type f -name '*.h')
-INCLUDE_PATH= -I ./include
+VPATH = include
+INCLUDE_PATH = -I ./include
 CFLAGS = $(INCLUDE_PATH)
 OBJS = main.o
+TARGET = nanoos.bin
 CC = arm-none-eabi-gcc
 
-all: nanoos.bin 
+all: $(TARGET) 
 
 nanoos.bin: $(OBJS)
-	$(CC) $(CLAGS) -o nanoos.bin $^
+	$(CC) $(CLAGS) -o $@ $^
 
 .PHONY: doc
 doc:
 	doxygen nanoos.doxygen
 
 clean:
-	rm -rf doc/
+	rm -rf doc/ $(TARGET)

@@ -12,11 +12,13 @@ typedef enum _usart_id_t {
     ID_USART2
 } usart_id_t;
 
-typedef struct _device_usart_t {
+/*typedef struct _device_usart_t {
     void *hw;
 
     uint32_t baudrate;
-} device_usart_t;
+} device_usart_t;*/
+
+typedef device_t device_usart_t;
 
 typedef struct _device_op_usart_t {
     int32_t (*open)(device_t *, uint32_t, uint32_t);
@@ -28,7 +30,7 @@ typedef struct _device_op_usart_t {
 /* ***** PUBLIC METHODS ***** */
 int32_t usart_init();
 
-static inline int32_t usart_open(device_t *dev, uint32_t id, uint32_t baudrate)
+static inline int32_t usart_open(device_usart_t *dev, uint32_t id, uint32_t baudrate)
 {
     return ((device_op_usart_t*) (dev->ops))->open(dev, id, baudrate);
 }
