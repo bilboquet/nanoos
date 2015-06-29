@@ -6,8 +6,8 @@
 
 /* ***** INCLUDES ***** */
 #include <stdint.h>
-#include "../../../../include/device.h"
-#include "../../../../include/types.h"
+#include "device.h"
+#include "types.h"
 
 #ifdef STM32F10x
 #elif STM32F429xx

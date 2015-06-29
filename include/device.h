@@ -44,13 +44,13 @@ typedef enum _device_state_t {
 /**
  *  Possible operations on generic device
  *  */
+typedef struct _device_t device_t;
 typedef struct _device_op_t {
     int32_t (*open)(device_t *dev, void *params); /**< Open the device and apply parameters */
     int32_t (*close)(device_t *dev);              /**< Close the device, free resources */
     int32_t (*pm)(device_t *dev, device_pm_state_t newstate); /**< Change power state of the device */
 } device_op_t;
 
-typedef struct _device_t device_t;
 /**
  * Structure describing a device.
  */
