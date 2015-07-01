@@ -16,83 +16,70 @@
  * Supported device types.
  */
 typedef enum _device_type_t {
-    DEVICE_I2C = 0, /**< I2C device */
-    DEVICE_USART,   /**< USART device */
+    DEVICE_I2C = 0, /** I2C device */
+    DEVICE_USART,   /** USART device */
+    DEVICE_TIME,    /** TIME device */
+    DEVICE_SPI,     /** SPI device */
 } device_type_t;
-
-/**
- * Power management states.
- */
-typedef enum _pm_state_t {
-    PM_STATE_OFF = 0,   /**< Device OFF */
-    PM_STATE_LOW_POWER, /**< Device switch to low power mode */
-    PM_STATE_FULL       /**< Device working at full power mode */
-} device_pm_state_t;
 
 /**
  * Device states
  */
 typedef enum _device_state_t {
-    UNINITIALIZED = 0, //!< UNINITIALIZED
-    INITIALIZED,      //!< INITIALIZED
-    READY,            //!< READY
-    DRV_OPENED,       //!< DRV_OPENED
-    BUSY,             //!< BUSY
-    DRV_CLOSED        //!< DRV_CLOSED
+    UNINITIALIZED = 0,
+    INITIALIZED,
+    READY,
+    BUSY,
 } device_state_t;
 
 /**
  *  Possible operations on generic device
- *  */
-typedef struct _device_t device_t;
-typedef struct _device_op_t {
-    int32_t (*open)(device_t *dev, void *params); /**< Open the device and apply parameters */
-    int32_t (*close)(device_t *dev);              /**< Close the device, free resources */
-    int32_t (*pm)(device_t *dev, device_pm_state_t newstate); /**< Change power state of the device */
-} device_op_t;
+ */
+typedef struct _device_ops_t {
+    int32_t (*open)(device_t *dev, void *params);                     /** Open a device */
+    int32_t (*close)(device_t *dev);                                  /** Close a device */
+    int32_t (*suspend)(device_t *dev);                                /** Power management: suspend */
+    int32_t (*resume)(device_t *dev);                                 /** Power management: suspend */
+    int32_t (*attach)(device_t *dev, device_t *drv);                  /** Attach driver drv to device dev */
+    int32_t (*ioctl)(device_t *dev, device_ioctl_t id, void *args);   /** Interfere with configuration of the device through unified API */
+    int32_t (*send)(device_t *dev, uint8_t *data, uint16_t data_len); /** Transmit data to the underlying device */
+    int32_t (*recv)(device_t *dev, uint8_t *data, uint16_t data_len); /** Receive data from the underlying device */
+} device_ops_t;
 
 /**
  * Structure describing a device.
  */
 typedef struct _device_t {
+    char device_name[16]; /** Device name */
+    device_type_t type;   /** Device type */
+    device_state_t state; /** Device state */
 
-    char devname[16];     /**< Device name */
+    lock_t lock;          /** Device protection against multiple access */
+    uint32_t irq;         /** IRQ id */
+    bool use_dma;         /** Indication on dma usage by device */
+    bool blocking;        /** If blocking is set, set to polling mode */
 
-    device_type_t type;   /**< Device type */
-    device_state_t state; /**< Current state of the device */
+    list_t *drv;          /**  Driver using this device */
 
-    lock_t lock;          /**< Device protection against multiple access */
-    uint32_t irq;         /**< IRQ id */
-    bool use_dma;         /**< Indication on dma usage by device */
-    bool async;           /**< If async is set, asynchronous mode use */
-    device_t *drv;        /**< Driver using this device */
-    device_t *dev;        /**< Underlying device to use */
+    device_t *dev;        /** Underlying device to use */
 
-    void *private;        /**< Hardware specific */
+    void *private;        /** Device specific */
 
-    /* List of devices */
-    list_t *list;         /**< List of devices composing the system */
-
-    void *ops;            /**< Possible operations on device */
+    /* Basic operation on devices */
+    device_ops_t *ops;   /** Device operations */
 } device_t;
 
 /* ***** PUBLIC METHODS ***** */
-/**
- * @brief Initialise a device
- * @param dev     Device to initialise
- * @param type    Device type
- * @param devname Device name
- */
-//int32_t device_init(device_t *dev, device_type_t type, const char *devname);
+int32_t device_init(device_t *dev, device_type_t type, const char *devname, device_ops_t *ops);
 
-//int32_t device_open(device_t *dev, void *hw_params);
+int32_t device_open(device_t *dev, void *params);
 
 int32_t device_close(device_t *dev);
 
-int32_t device_pm(device_t *dev, device_pm_state_t state);
+int32_t device_suspend(device_t dev);
 
-int32_t device_list(device_t *dev);
+int32_t device_attach(device_t *dev, device_t *drv);
 
-int32_t driver_attach(device_t *drv, device_t *dev);
+int32_t ioctl(device_t *dev, device_ioctl_t id, void *args);
 
 #endif /* ! _DEVICE_H */

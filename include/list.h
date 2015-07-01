@@ -3,12 +3,10 @@
 
 /* ***** TYPES ***** */
 typedef struct _list_t {
-	struct _list_t *next;
-	struct _list_t *prev;
+    struct _list_t *next;
+    struct _list_t *prev;
 } list_t;
 
-
 /* ***** PUBLIC METHODS ***** */
-
 
 #endif /* ! _LIST_H */
