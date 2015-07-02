@@ -48,6 +48,8 @@ typedef enum _device_ioctl_t {
 
 } device_ioctl_t;
 
+typedef struct _device_t device_t;
+
 /**
  *  Possible operations on generic device
  */
