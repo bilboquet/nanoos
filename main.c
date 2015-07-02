@@ -15,11 +15,11 @@ int main(void)
     /* should not be used this way ?
      i2c_open(&i2c, ID_I2C1, 0x00, 400000);*/
 
-    init(&i2c, DEVICE_I2C, "I2C1");
-    open(&i2c, ID_I2C1, 0x78, 400000);
+    device_init(&i2c, DEVICE_I2C, "I2C1");
+    i2c_open(&i2c, ID_I2C1, 0x78, 400000);
 
-    init(&usart, DEVICE_USART, "USART2");
-    open(&usart, ID_USART1, 115200);
+    device_init(&usart, DEVICE_USART, "USART2");
+    usart_open(&usart, ID_USART1, 115200);
 
     while (1) {
         // Receive next command length coded on 2 bytes from host

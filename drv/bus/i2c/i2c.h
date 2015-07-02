@@ -38,7 +38,7 @@ typedef device_t device_i2c_t;
  * Possible operations on an i2c device
  */
 typedef struct _device_op_i2c_t {
-    device_op_t base; /**< inherited operations */
+    device_ops_t base; /**< inherited operations */
 
     /* dedicated operation on device */
     int32_t (*transfer)(device_t *, uint16_t, i2c_op_t, uint8_t *, uint16_t, i2c_stop_cond_t);

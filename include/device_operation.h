@@ -12,6 +12,8 @@
 #include "../drv/serial/usart.h"
 
 
+
+
 #define init(X,...) _Generic((X), \
         device_i2c_t * : i2c_init, \
         device_usart_t * : usart_init \

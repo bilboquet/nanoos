@@ -17,5 +17,6 @@ main.o: main.c device_operation.h device.h
 doc:
 	doxygen nanoos.doxygen
 
+.PHONY: clean
 clean:
 	rm -rf doc/ $(TARGET)
