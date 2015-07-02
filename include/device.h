@@ -32,6 +32,22 @@ typedef enum _device_state_t {
     BUSY,
 } device_state_t;
 
+typedef enum _device_ioctl_t {
+    IOCTL_I2C_SET_FREQ = 0,
+    IOCTL_I2C_SET_OWNADDRESS,
+
+    IOCTL_SPI_SET_FREQ,
+
+    IOCTL_TIME_SET_ALARM,
+    IOCTL_TIME_CLEAR_ALARM,
+
+    IOCTL_USART_SET_BAUDRATE,
+    IOCTL_USART_CHRLEN,
+    IOCTL_USART_SET_PARITY,
+    IOCTL_USART_SET_STOPBIT,
+
+} device_ioctl_t;
+
 /**
  *  Possible operations on generic device
  */
