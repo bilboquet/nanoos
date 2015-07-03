@@ -17,9 +17,9 @@
  */
 typedef enum _device_type_t {
     DEVICE_I2C = 0, /** I2C device */
-    DEVICE_USART,   /** USART device */
-    DEVICE_TIME,    /** TIME device */
-    DEVICE_SPI,     /** SPI device */
+    DEVICE_USART, /** USART device */
+    DEVICE_TIME, /** TIME device */
+    DEVICE_SPI, /** SPI device */
 } device_type_t;
 
 /**
@@ -59,7 +59,7 @@ typedef struct _device_ops_default_t {
     int32_t (*suspend)(device_t *dev);                                      ///< Power management: suspend
     int32_t (*resume)(device_t *dev);                                       ///< Power management: suspend
     int32_t (*attach)(device_t *dev, device_t *drv);                        ///< Attach driver drv to device dev
-    int32_t (*ioctl)(device_t *dev, device_ioctl_t ioctl_id, void *args);   ///< Interfere with configuration of the device through unified API
+    int32_t (*ioctl)(device_t *dev, device_ioctl_t ioctl_id, void *args); ///< Interfere with configuration of the device through unified API
 } device_ops_default_t;
 
 /**
@@ -94,7 +94,32 @@ typedef struct _device_t {
  * @param ops      The operation set to use on the device
  * @return error status
  */
-int32_t device_init(device_t *dev, device_type_t type, const char *devname, void *ops);
+static inline int32_t device_init(device_t *dev, device_type_t type, const char *devname, void *ops)
+{
+    dev->type = type;
+    strlcpy(dev->device_name, devname, 16); // TODO: replace strlcpy…
+    dev->ops = ops;
+    return 0; // Everything always goes well !
+}
+static inline int32_t device_init_alternate(device_t *dev, device_type_t type, const char *devname)
+{
+    void * ops;
+    switch (type) {
+    case DEVICE_I2C:
+        ops = i2c_ops;
+        break;
+    case DEVICE_USART:
+        ops = usart_ops;
+        break;
+    case DEVICE_TIME:
+        ops = times_ops;
+        break;
+    case DEVICE_SPI:
+        ops = spi_ops;
+        break;
+    }
+    return device_init(dev, type, ops);
+}
 
 /**
  * @brief Open a device with the given parameters
@@ -141,5 +166,7 @@ int32_t device_attach(device_t *dev, device_t *drv);
  * @return error status
  */
 int32_t device_ioctl(device_t *dev, device_ioctl_t id, void *arg);
+
+int32_t device_call(device_t *dev, device_op_t id, void *agrs);
 
 #endif /* ! _DEVICE_H */

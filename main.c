@@ -6,20 +6,24 @@
 
 int main(void)
 {
-    device_i2c_t i2c;
-    device_usart_t usart;
+    device_t i2c, usart;
     uint8_t buffer[1024];
     uint16_t length;
+
+    i2c_param_t i2c_param;
+    usart_param_t usart_param;
 
     time_open();
     /* should not be used this way ?
      i2c_open(&i2c, ID_I2C1, 0x00, 400000);*/
 
-    device_init(&i2c, DEVICE_I2C, "I2C1");
-    i2c_open(&i2c, ID_I2C1, 0x78, 400000);
+    device_init(&i2c, DEVICE_I2C, "I2C1", (void*)i2c_ops);
+    device_init_alternate(&i2c, DEVICE_I2C, "I2C1");
+    device_open(&i2c, (void*) &i2c_param);
 
-    device_init(&usart, DEVICE_USART, "USART2");
-    usart_open(&usart, ID_USART1, 115200);
+    device_init(&usart, DEVICE_USART, "USART2", (void*)usart_ops);
+    device_init_alternate(&usart, DEVICE_USART, "USART2");
+    device_open(&usart, (void*) &usart_param);
 
     while (1) {
         // Receive next command length coded on 2 bytes from host

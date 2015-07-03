@@ -12,13 +12,18 @@ typedef enum _usart_id_t {
     ID_USART2
 } usart_id_t;
 
-/*typedef struct _device_usart_t {
-    void *hw;
+/**
+ * Possible operations on an usart device
+ */
+extern const device_ops_default_t usart_ops[];
 
+/**
+ * Parameters for an usart device.
+ */
+typedef struct _usart_param_t {
     uint32_t baudrate;
-} device_usart_t;*/
+} usart_param_t;
 
-typedef device_t device_usart_t;
 
 typedef struct _device_op_usart_t {
     int32_t (*open)(device_t *, uint32_t, uint32_t);
@@ -30,6 +35,7 @@ typedef struct _device_op_usart_t {
 /* ***** PUBLIC METHODS ***** */
 int32_t usart_init();
 
+/*
 static inline int32_t usart_open(device_usart_t *dev, uint32_t id, uint32_t baudrate)
 {
     return ((device_op_usart_t*) (dev->ops))->open(dev, id, baudrate);
@@ -50,5 +56,6 @@ int32_t usart_recv(device_t *dev, uint8_t *str, uint16_t length)
     return ((device_op_usart_t*) (dev->ops))->recv(dev, str, length);
 
 }
+*/
 
 #endif /* ! _USART_H */

@@ -21,11 +21,8 @@
 #include "../../../../lib/time.h"
 
 /* ***** OPERATIONS **** */
-static device_op_i2c_t ops = {
-		.open = i2c_open,
-		.close = i2c_close,
-		.transfer = i2c_transfer,
-};
+const device_ops_default_t i2c_ops[] = { { .open = i2c_open, .close = i2c_close, .transfer = i2c_transfer, } };
+
 
 /* ***** PRIVATE_METHODS ***** */
 /**

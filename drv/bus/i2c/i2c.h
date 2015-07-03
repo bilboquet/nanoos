@@ -26,24 +26,19 @@ typedef enum _i2c_stop_cond_t {
     I2C_STOP_COND_STOP
 } i2c_stop_cond_t;
 
+/**
+ * Parameters for i2c devices.
+ */
 typedef struct _i2c_param_t {
     uint16_t address;
     uint32_t freq;
 } i2c_param_t;
 
-/* Simple typedef that allows to use _Generic*/
-typedef device_t device_i2c_t;
 
 /**
  * Possible operations on an i2c device
  */
-typedef struct _device_op_i2c_t {
-    device_ops_t base; /**< inherited operations */
-
-    /* dedicated operation on device */
-    int32_t (*transfer)(device_t *, uint16_t, i2c_op_t, uint8_t *, uint16_t, i2c_stop_cond_t);
-
-} device_op_i2c_t;
+extern const device_ops_default_t i2c_ops[];
 
 typedef enum _i2c_id_t {
     ID_I2C1,
@@ -61,31 +56,5 @@ int32_t i2c_init(device_t *dev, device_t *drv, uint16_t addr);
  * @param freq     The frequency of the i2c bus
  * @return 0 on success, -X for errors
  */
-int32_t i2c_open(device_t *drv, i2c_param_t *params);
-//int32_t i2c_open(device_t *dev, uint32_t id, uint16_t own_addr, uint32_t freq);
-
-/**
- * @brief Close an I2C device
- * @param dev      The device representing the I2C bus
- * @return 0 on success, -X for errors
- */
-int32_t i2c_close(device_t * dev);
-
-/**
- * @brief Transfer I2C data on the bus to the slave represented by its addr
- * @param dev       The device representing the i2c peripheral
- * @param addr      Slave address
- * @param op        Operation to perform: I2C_OP_{READ|WRITE}
- * @param buffer    Data buffer
- * @param size      Data buffer length
- * @param stop_cond Does transfer stop after this transfer I2C_STOP_COND_{STOP|NOSTOP}
- * @return 0 on success, -X on errors
- */
-int32_t i2c_transfer(device_t *dev,
-        uint16_t addr,
-        i2c_op_t op,
-        uint8_t *buffer,
-        uint16_t size,
-        i2c_stop_cond_t stop_cond);
 
 #endif
