@@ -87,39 +87,14 @@ typedef struct _device_t {
 
 /* ***** PUBLIC METHODS ***** */
 /**
- * @brief Initialize a device with the required type, name and operations
+ * @brief Initialize a device with the required type and name.
+ * Operations are set according to type.
  * @param dev      The device to use
  * @param type     The type of the device to use
  * @param devname  The name of the device
- * @param ops      The operation set to use on the device
  * @return error status
  */
-static inline int32_t device_init(device_t *dev, device_type_t type, const char *devname, void *ops)
-{
-    dev->type = type;
-    strlcpy(dev->device_name, devname, 16); // TODO: replace strlcpy…
-    dev->ops = ops;
-    return 0; // Everything always goes well !
-}
-static inline int32_t device_init_alternate(device_t *dev, device_type_t type, const char *devname)
-{
-    void * ops;
-    switch (type) {
-    case DEVICE_I2C:
-        ops = i2c_ops;
-        break;
-    case DEVICE_USART:
-        ops = usart_ops;
-        break;
-    case DEVICE_TIME:
-        ops = times_ops;
-        break;
-    case DEVICE_SPI:
-        ops = spi_ops;
-        break;
-    }
-    return device_init(dev, type, ops);
-}
+int32_t device_init(device_t *dev, device_type_t type, const char *devname);
 
 /**
  * @brief Open a device with the given parameters
