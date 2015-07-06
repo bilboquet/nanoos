@@ -11,25 +11,24 @@
 #include "list.h"
 
 /* ***** TYPES ***** */
-
 /**
  * Supported device types.
  */
 typedef enum _device_type_t {
-    DEVICE_I2C = 0, /** I2C device */
-    DEVICE_UART,    /** UART device or UART feature on USART physical port */
-    DEVICE_TIME,    /** TIME device */
-    DEVICE_SPI,     /** SPI device */
+    DEVICE_I2C = 0, ///< I2C device
+    DEVICE_UART,    ///< UART device or UART feature on USART physical port
+    DEVICE_TIME,    ///< TIME device
+    DEVICE_SPI,     ///< SPI device
 } device_type_t;
 
 /**
- * Device states
+ * Device states.
  */
 typedef enum _device_state_t {
-    UNINITIALIZED = 0,
-    INITIALIZED,
-    READY,
-    BUSY,
+    UNINITIALIZED = 0,//!< UNINITIALIZED
+    INITIALIZED,      //!< INITIALIZED
+    READY,            //!< READY
+    BUSY,             //!< BUSY
 } device_state_t;
 
 typedef enum _device_ioctl_t {
@@ -50,7 +49,6 @@ typedef enum _device_ioctl_t {
 } device_ioctl_t;
 
 typedef struct _device_t device_t;
-
 /**
  * Structure describing a device.
  */
@@ -78,8 +76,9 @@ typedef struct _device_t {
     int32_t (*attach)(device_t *dev, device_t *drv);                        ///< Attach driver drv to device dev
     int32_t (*ioctl)(device_t *dev, device_ioctl_t ioctl_id, void *args);   ///< Interfere with configuration of the device through unified API
 
-    void *ops;             ///< Specific device operations
+    void *ops;     ///< Specific device operations
 } device_t;
+
 
 /* ***** PUBLIC METHODS ***** */
 /**

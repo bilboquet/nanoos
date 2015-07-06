@@ -36,15 +36,19 @@ int32_t device_init(device_t *dev, device_type_t type, const char *devname)
     case DEVICE_I2C:
         dev->ops = &i2c_ops;
         break;
+
     case DEVICE_USART:
         dev->ops = &usart_ops;
         break;
+
     case DEVICE_TIME:
         dev->ops = &time_ops;
         break;
+
     case DEVICE_SPI:
         dev->ops = &spi_ops;
         break;
+
     default:
         return -1;
     }
@@ -179,4 +183,5 @@ static int32_t _device_ioctl(device_t *dev, device_ioctl_t ioctl_id, void *args)
 {
     return 0;
 }
+
 /* *****  EOF ***** */
