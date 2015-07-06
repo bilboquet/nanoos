@@ -38,7 +38,7 @@ typedef struct _i2c_param_t {
 /**
  * Possible operations on an i2c device
  */
-extern const device_ops_default_t i2c_ops[];
+//extern const device_ops_default_t i2c_ops[];
 
 typedef enum _i2c_id_t {
     ID_I2C1,

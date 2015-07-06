@@ -20,7 +20,7 @@ int main(void)
     device_init(&i2c, DEVICE_I2C, "I2C1");
     device_open(&i2c, (void*) &i2c_param);
 
-    device_init(&usart, DEVICE_USART, "USART2");
+    device_init(&usart, DEVICE_UART, "USART2");
     device_open(&usart, (void*) &usart_param);
 
     while (1) {

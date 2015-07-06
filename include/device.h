@@ -17,9 +17,9 @@
  */
 typedef enum _device_type_t {
     DEVICE_I2C = 0, /** I2C device */
-    DEVICE_USART, /** USART device */
-    DEVICE_TIME, /** TIME device */
-    DEVICE_SPI, /** SPI device */
+    DEVICE_UART,    /** UART device or UART feature on USART physical port */
+    DEVICE_TIME,    /** TIME device */
+    DEVICE_SPI,     /** SPI device */
 } device_type_t;
 
 /**
@@ -35,32 +35,21 @@ typedef enum _device_state_t {
 typedef enum _device_ioctl_t {
     IOCTL_I2C_SET_FREQ = 0,
     IOCTL_I2C_SET_OWNADDRESS,
+    IOCTL_I2C_SET_MODE, /* Select master/slave mode */
 
     IOCTL_SPI_SET_FREQ,
 
     IOCTL_TIME_SET_ALARM,
     IOCTL_TIME_CLEAR_ALARM,
 
-    IOCTL_USART_SET_BAUDRATE,
-    IOCTL_USART_CHRLEN,
-    IOCTL_USART_SET_PARITY,
-    IOCTL_USART_SET_STOPBIT,
+    IOCTL_UART_SET_BAUDRATE,
+    IOCTL_UART_CHRLEN,
+    IOCTL_UART_SET_PARITY,
+    IOCTL_UART_SET_STOPBIT,
 
 } device_ioctl_t;
 
 typedef struct _device_t device_t;
-
-/**
- *  Possible operations on generic device
- */
-typedef struct _device_ops_default_t {
-    int32_t (*open)(device_t *dev, void *params);                           ///< Open a device
-    int32_t (*close)(device_t *dev);                                        ///< Close a device
-    int32_t (*suspend)(device_t *dev);                                      ///< Power management: suspend
-    int32_t (*resume)(device_t *dev);                                       ///< Power management: suspend
-    int32_t (*attach)(device_t *dev, device_t *drv);                        ///< Attach driver drv to device dev
-    int32_t (*ioctl)(device_t *dev, device_ioctl_t ioctl_id, void *args); ///< Interfere with configuration of the device through unified API
-} device_ops_default_t;
 
 /**
  * Structure describing a device.
@@ -81,8 +70,15 @@ typedef struct _device_t {
 
     void *private;         ///< Device specific
 
-    /* Operation on devices */
-    void *ops;             ///< Device operations
+    /* Standard operations on devices */
+    int32_t (*open)(device_t *dev, void *params);                           ///< Open a device
+    int32_t (*close)(device_t *dev);                                        ///< Close a device
+    int32_t (*suspend)(device_t *dev);                                      ///< Power management: suspend
+    int32_t (*resume)(device_t *dev);                                       ///< Power management: suspend
+    int32_t (*attach)(device_t *dev, device_t *drv);                        ///< Attach driver drv to device dev
+    int32_t (*ioctl)(device_t *dev, device_ioctl_t ioctl_id, void *args);   ///< Interfere with configuration of the device through unified API
+
+    void *ops;             ///< Specific device operations
 } device_t;
 
 /* ***** PUBLIC METHODS ***** */
@@ -112,18 +108,18 @@ int32_t device_open(device_t *dev, void *params);
 int32_t device_close(device_t *dev);
 
 /**
- * @brief Drive a device t olow power mode
+ * @brief Drive a device to low power mode
  * @param dev      The device to drive
  * @return error status
  */
-int32_t device_suspend(device_t dev);
+int32_t device_suspend(device_t *dev);
 
 /**
  * @brief Drive a device to full power mode
  * @param dev      The device to drive
  * @return error status
  */
-int32_t device_resume(device_t dev);
+int32_t device_resume(device_t *dev);
 
 /**
  * @brief Attach a driver #drv to an underlying device #dev
@@ -140,8 +136,8 @@ int32_t device_attach(device_t *dev, device_t *drv);
  * @param arg      A pointer to the required parameters to modify
  * @return error status
  */
-int32_t device_ioctl(device_t *dev, device_ioctl_t id, void *arg);
+int32_t ioctl(device_t *dev, device_ioctl_t id, void *arg);
 
-int32_t device_call(device_t *dev, device_op_t id, void *agrs);
+//int32_t device_call(device_t *dev, device_op_t id, void *agrs);
 
 #endif /* ! _DEVICE_H */

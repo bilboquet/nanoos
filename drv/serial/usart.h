@@ -15,7 +15,7 @@ typedef enum _usart_id_t {
 /**
  * Possible operations on an usart device
  */
-extern const device_ops_default_t usart_ops[];
+//extern const device_ops_default_t usart_ops[];
 
 /**
  * Parameters for an usart device.
