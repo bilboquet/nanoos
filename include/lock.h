@@ -1,6 +1,9 @@
 #ifndef _LOCK_H
 #define _LOCK_H
 
+/* ***** INCLUDES ***** */
+#include "types.h"
+
 /* ***** TYPES ***** */
 /** Lock structure */
 /*typedef struct _lock_t {

@@ -7,7 +7,7 @@
 
 
 /* ***** PRIVATE METHOD PROTOTYPES ***** */
-static int32_t _device_open(device_t *dev, void *params);                           /** Open a device */
+static int32_t _device_open(device_t *dev, device_option_t options);                /** Open a device */
 static int32_t _device_close(device_t *dev);                                        /** Close a device */
 static int32_t _device_suspend(device_t *dev);                                      /** Power management: suspend */
 static int32_t _device_resume(device_t *dev);                                       /** Power management: suspend */
@@ -38,7 +38,7 @@ int32_t device_init(device_t *dev, device_type_t type, const char *devname)
         break;
 
     case DEVICE_UART:
-        dev->ops = &usart_ops;
+        dev->ops = &uart_ops;
         break;
 
     case DEVICE_TIME:
@@ -61,15 +61,15 @@ int32_t device_init(device_t *dev, device_type_t type, const char *devname)
 /**
  * @brief Open a device with the given parameters
  * @param dev      The device to open
- * @param params   Parameters to be used to  configure the device before opening
+ * @param options  Device options
  * @return error status
  */
-int32_t device_open(device_t *dev, void *params)
+int32_t device_open(device_t *dev, device_option_t options)
 {
     if (dev == NULL) return -1;
     
     if (dev->open != NULL)
-        dev->open(dev, params);
+        dev->open(dev, options);
 
     return 0;
 }
@@ -130,7 +130,7 @@ int32_t device_attach(device_t *dev, device_t *drv)
     if (dev == NULL) return -1;
 
     if (dev->attach != NULL)
-        dev->attach(dev, params);
+        dev->attach(dev, drv);
 
     return 0;
 }
@@ -147,14 +147,14 @@ int32_t ioctl(device_t *dev, device_ioctl_t id, void *arg)
     if (dev == NULL) return -1;
 
     if (dev->ioctl != NULL)
-        dev->ioctl(dev, params);
+        dev->ioctl(dev, id, arg);
 
     return 0;
 }
 
 
 /* ***** PRIVATE METHOD ***** */
-static int32_t _device_open(device_t *dev, void *params)
+static int32_t _device_open(device_t *dev, device_option_t options)
 {
     return 0;
 }

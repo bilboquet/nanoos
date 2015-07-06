@@ -1,5 +1,5 @@
-VPATH = include:src
-INCLUDE_PATH = -I ./include
+VPATH = include:src:lib:drv/bus/i2c::drv/bus/spi:drv/serial
+INCLUDE_PATH = -I ./include -I ./lib -I ./drv/bus/i2c -I ./drv/bus/spi -I ./drv/serial
 CFLAGS = $(INCLUDE_PATH)
 OBJS = main.o device.o
 TARGET = nanoos.bin
@@ -13,7 +13,7 @@ nanoos.bin: $(OBJS)
 
 main.o: main.c device.h
 
-device.o: device.c device.h i2c.h usart.h
+device.o: device.c device.h i2c.h uart.h
 
 .PHONY: doc
 doc:

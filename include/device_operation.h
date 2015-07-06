@@ -9,7 +9,7 @@
 #define INCLUDE_DEVICE_OPERATION_H_
 
 #include "../drv/bus/i2c/i2c.h"
-#include "../drv/serial/usart.h"
+#include "../drv/serial/uart.h"
 
 
 

@@ -6,8 +6,6 @@
  */
 
 /* ***** INCLUDES ***** */
-#include <stdint.h>
-#include <stdbool.h>
 #include "lock.h"
 #include "list.h"
 
@@ -61,7 +59,7 @@ typedef enum _device_option_t {
     O_WRONLY,       ///< Write only device
     O_RDWR,         ///< Read/write device
     O_NONBLOCKING,  ///< Non blocking operations
-} device_option_t
+} device_option_t;
 
 typedef struct _device_t device_t;
 /**
@@ -76,7 +74,8 @@ typedef struct _device_t {
     uint32_t irq;            ///< IRQ id
     device_option_t options; ///< Device options
 
-    list_t *drv;             ///<  Driver using this device
+    list_t *drv;             ///< Driver using this device
+    uint8_t refcount;        ///< Number of drivers using this device
 
     device_t *dev;           ///< Underlying device to use
 

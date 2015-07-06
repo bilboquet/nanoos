@@ -4,7 +4,15 @@
 /* ***** INCLUDES ***** */
 #include <stdint.h>
 
-#include "../../include/common.h"
+#include "common.h"
+
+typedef device_time_ops_t;
+/**
+ * Possible operations on a time device
+ */
+extern const device_time_ops_t time_ops;
+
+
 /* ***** PUBLIC METHODS ***** */
 /**
  * @brief Init the systick timer

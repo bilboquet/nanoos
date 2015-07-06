@@ -18,10 +18,10 @@ int main(void)
      i2c_open(&i2c, ID_I2C1, 0x00, 400000);*/
 
     device_init(&i2c, DEVICE_I2C, "I2C1");
-    device_open(&i2c, (void*) &i2c_param);
+    device_open(&i2c, O_RDWR);
 
     device_init(&usart, DEVICE_UART, "USART2");
-    device_open(&usart, (void*) &usart_param);
+    device_open(&usart, O_RDWR);
 
     while (1) {
         // Receive next command length coded on 2 bytes from host
@@ -32,19 +32,19 @@ int main(void)
         usart_recv(&usart, buffer, length);
 
         // Send I2C command to slave
-        ((device_op_i2c_t*) (i2c.ops))->transfer(&i2c, I2C_OP_SEND, 0x76,
-                buffer, length, I2C_STOP_COND_NOSTOP);
+//        ((device_op_i2c_t*) (i2c.ops))->transfer(&i2c, I2C_OP_SEND, 0x76,
+//                buffer, length, I2C_STOP_COND_NOSTOP);
         // Read length of next answer length from  I2C slave
-        ((device_op_i2c_t*) (i2c.ops))->transfer(&i2c, I2C_OP_RECV, 0x76,
-                buffer, 2, I2C_STOP_COND_STOP);
+//        ((device_op_i2c_t*) (i2c.ops))->transfer(&i2c, I2C_OP_RECV, 0x76,
+//                buffer, 2, I2C_STOP_COND_STOP);
 
         // Forward length to host
         length = buffer[1] << 8 | buffer[0];
         usart_send(&usart, length);
 
         // Receive I2C answer from slave
-        ((device_op_i2c_t*) (i2c.ops))->transfer(&i2c, I2C_OP_RECV, 0x76,
-                buffer, length, I2C_STOP_COND_STOP);
+//        ((device_op_i2c_t*) (i2c.ops))->transfer(&i2c, I2C_OP_RECV, 0x76,
+//                buffer, length, I2C_STOP_COND_STOP);
 
         // Forward answer from i2c slave to host
         /*TODO: move the loop inside usart_send*/

@@ -13,11 +13,6 @@ typedef enum _usart_id_t {
 } usart_id_t;
 
 /**
- * Possible operations on an usart device
- */
-//extern const device_ops_default_t usart_ops[];
-
-/**
  * Parameters for an usart device.
  */
 typedef struct _usart_param_t {
@@ -31,6 +26,11 @@ typedef struct _device_op_usart_t {
     int32_t (*send)(device_t *, uint16_t);
     int32_t (*recv)(device_t *, uint8_t *, uint16_t);
 } device_op_usart_t;
+
+/**
+ * Possible operations on an usart device
+ */
+extern const device_op_usart_t uart_ops;
 
 /* ***** PUBLIC METHODS ***** */
 int32_t usart_init();
