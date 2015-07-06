@@ -37,7 +37,7 @@ int32_t device_init(device_t *dev, device_type_t type, const char *devname)
         dev->ops = &i2c_ops;
         break;
 
-    case DEVICE_USART:
+    case DEVICE_UART:
         dev->ops = &usart_ops;
         break;
 

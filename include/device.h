@@ -1,5 +1,6 @@
 #ifndef _DEVICE_H
 #define _DEVICE_H
+
 /** \file device.h
  * Definition of the generic device_t type.
  */
@@ -25,12 +26,15 @@ typedef enum _device_type_t {
  * Device states.
  */
 typedef enum _device_state_t {
-    UNINITIALIZED = 0,//!< UNINITIALIZED
-    INITIALIZED,      //!< INITIALIZED
-    READY,            //!< READY
-    BUSY,             //!< BUSY
+    UNINITIALIZED = 0,///< UNINITIALIZED
+    INITIALIZED,      ///< INITIALIZED
+    READY,            ///< READY
+    BUSY,             ///< BUSY
 } device_state_t;
 
+/**
+ * List of device IOCTLs
+ */
 typedef enum _device_ioctl_t {
     IOCTL_I2C_SET_FREQ = 0,
     IOCTL_I2C_SET_OWNADDRESS,
@@ -48,28 +52,38 @@ typedef enum _device_ioctl_t {
 
 } device_ioctl_t;
 
+/**
+ * Device options
+ */
+typedef enum _device_option_t {
+    O_NONE = 0,     ///< No option
+    O_RDONLY,       ///< Read only device
+    O_WRONLY,       ///< Write only device
+    O_RDWR,         ///< Read/write device
+    O_NONBLOCKING,  ///< Non blocking operations
+} device_option_t
+
 typedef struct _device_t device_t;
 /**
  * Structure describing a device.
  */
 typedef struct _device_t {
-    char device_name[16];  ///< Device name
-    device_type_t type;    ///< Device type
-    device_state_t state;  ///< Device state
+    char device_name[16];    ///< Device name
+    device_type_t type;      ///< Device type
+    device_state_t state;    ///< Device state
 
-    lock_t lock;           ///< Device protection against multiple access
-    uint32_t irq;          ///< IRQ id
-    bool use_dma;          ///< Indication on dma usage by device
-    bool blocking;         ///< If blocking is set, set to polling mode
+    lock_t lock;             ///< Device protection against multiple access
+    uint32_t irq;            ///< IRQ id
+    device_option_t options; ///< Device options
 
-    list_t *drv;           ///<  Driver using this device
+    list_t *drv;             ///<  Driver using this device
 
-    device_t *dev;         ///< Underlying device to use
+    device_t *dev;           ///< Underlying device to use
 
-    void *private;         ///< Device specific
+    void *private;           ///< Device specific
 
     /* Standard operations on devices */
-    int32_t (*open)(device_t *dev, void *params);                           ///< Open a device
+    int32_t (*open)(device_t *dev, device_option_t options);                ///< Open a device
     int32_t (*close)(device_t *dev);                                        ///< Close a device
     int32_t (*suspend)(device_t *dev);                                      ///< Power management: suspend
     int32_t (*resume)(device_t *dev);                                       ///< Power management: suspend
@@ -94,10 +108,10 @@ int32_t device_init(device_t *dev, device_type_t type, const char *devname);
 /**
  * @brief Open a device with the given parameters
  * @param dev      The device to open
- * @param params   Parameters to be used to  configure the device before opening
+ * @param options  Device options
  * @return error status
  */
-int32_t device_open(device_t *dev, void *params);
+int32_t device_open(device_t *dev, device_option_t options);
 
 /**
  * @brief Close a device

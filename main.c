@@ -1,8 +1,8 @@
 #include "time.h"
 
 #include "./drv/bus/i2c/i2c.h"
-#include "./drv/serial/usart.h"
 #include "device_operation.h"
+#include "drv/serial/uart.h"
 
 int main(void)
 {

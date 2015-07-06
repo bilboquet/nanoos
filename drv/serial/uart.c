@@ -1,8 +1,7 @@
 /* ***** INCLUDES ***** */
-#include "../../../drv/serial/usart.h"
-
 #include  <stddef.h>
 #include <stdlib.h>
+#include "uart.h"
 
 #ifdef STM32F10x
 #include "stm32f10x.h"
