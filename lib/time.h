@@ -12,7 +12,6 @@ typedef device_time_ops_t;
  */
 extern const device_time_ops_t time_ops;
 
-
 /* ***** PUBLIC METHODS ***** */
 /**
  * @brief Init the systick timer
@@ -20,7 +19,7 @@ extern const device_time_ops_t time_ops;
 void time_open(void);
 
 /**
- * @brief Return the current time in ms from the initialisation of the time peripheral
+ * @brief Return the current time in ms from the initialization of the time peripheral
  * @return time in ms from start
  */
 uint32_t time(void);
@@ -31,15 +30,15 @@ uint32_t time(void);
 inline void mdelay(uint16_t delay_ms);
 
 /**
- * @brief Wait for a condition and execute (err) on timeout
+ * @brief Wait for a condition and execute (on_err) on timeout
  */
 #define wait(cond, timeout, on_err) do {        \
-	uint32_t _timeout = time() + timeout;       \
+    uint32_t _timeout = time() + timeout;       \
                                                 \
-	while (!(cond)) {                           \
-		if ((int32_t)(_timeout - time()) < 0)   \
-			{on_err;}                              \
-	}                                           \
+    while (!(cond)) {                           \
+        if ((int32_t)(_timeout - time()) < 0)   \
+            {on_err;}                           \
+    }                                           \
 } while (0)
 
 /**

@@ -24,7 +24,7 @@ typedef enum _device_type_t {
  * Device states.
  */
 typedef enum _device_state_t {
-    UNINITIALIZED = 0,///< UNINITIALIZED
+    UNINITIALIZED = 0,     ///< UNINITIALIZED
     INITIALIZED,      ///< INITIALIZED
     READY,            ///< READY
     BUSY,             ///< BUSY
@@ -44,7 +44,7 @@ typedef enum _device_ioctl_t {
     IOCTL_TIME_CLEAR_ALARM,
 
     IOCTL_UART_SET_BAUDRATE,
-    IOCTL_UART_CHRLEN,
+    IOCTL_UART_SET_CHRLEN,
     IOCTL_UART_SET_PARITY,
     IOCTL_UART_SET_STOPBIT,
 
@@ -75,8 +75,8 @@ typedef struct _device_t {
     device_option_t options; ///< Device options
 
     device_t *root;          ///< Underlying device to use
-    list_t   *root_drv;      ///< List of devices which uses the parent device
-    
+    list_t *root_drv;      ///< List of devices which uses the parent device
+
     list_t *drv;             ///< List of drivers which uses the current device
     uint8_t refcount;        ///< Number of drivers using this device
 
@@ -88,11 +88,10 @@ typedef struct _device_t {
     int32_t (*suspend)(device_t *dev);                                      ///< Power management: suspend
     int32_t (*resume)(device_t *dev);                                       ///< Power management: suspend
     int32_t (*attach)(device_t *dev, device_t *drv);                        ///< Attach driver drv to device dev
-    int32_t (*ioctl)(device_t *dev, device_ioctl_t ioctl_id, void *args);   ///< Interfere with configuration of the device through unified API
+    int32_t (*ioctl)(device_t *dev, device_ioctl_t ioctl_id, void *args); ///< Interfere with configuration of the device through unified API
 
     void *ops;     ///< Specific device operations
 } device_t;
-
 
 /* ***** PUBLIC METHODS ***** */
 /**

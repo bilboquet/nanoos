@@ -6,12 +6,12 @@
 
 int main(void)
 {
+    test_uart();
     device_t i2c, usart;
     uint8_t buffer[1024];
     uint16_t length;
 
     i2c_param_t i2c_param;
-    usart_param_t usart_param;
 
     time_open();
     /* should not be used this way ?
@@ -25,7 +25,7 @@ int main(void)
 
     while (1) {
         // Receive next command length coded on 2 bytes from host
-        ((device_op_usart_t*) (usart.ops))->recv(&usart, buffer, 2);
+        ((uart_ops_t *) (usart.ops))->recv(&usart, buffer, 2);
         length = buffer[1] << 8 | buffer[0];
 
         // Receive I2C command from host
@@ -48,22 +48,21 @@ int main(void)
 
         // Forward answer from i2c slave to host
         /*TODO: move the loop inside usart_send*/
-        int count = 0;
+//        int count = 0;
         uint16_t *data;
-        while (count < length - 1) {
-            data = (uint16_t *) &buffer[count];
-            ((device_op_usart_t*) (usart.ops))->send(&usart, *data);
-            count += 2;
-        }
+//        while (count < length - 1) {
+//            data = (uint16_t *) &buffer[count];
+//            ((uart_ops_t *) (usart.ops))->send(&usart, *data);
+//            count += 2;
+//        }
         // count - length == 2, one last run
-        if (count - length == 2) {
-            data = (uint16_t *) &buffer[count];
-            ((device_op_usart_t*) (usart.ops))->send(&usart, *data);
-        } else if (count - length == 1) { //one last char to send
-            ((device_op_usart_t*) (usart.ops))->send(&usart,
-                    buffer[length - 1]);
+//        if (count - length == 2) {
+//            data = (uint16_t *) &buffer[count];
+//            ((uart_ops_t *) (usart.ops))->send(&usart, *data);
+//        } else if (count - length == 1) { //one last char to send
+//            ((uart_ops_t *) (usart.ops))->send(&usart, buffer[length - 1]);
 
-        }
+//    }
 
     }
 }
