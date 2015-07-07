@@ -1,4 +1,4 @@
-/* ***** INCLUDSE ***** */
+/* ***** INCLUDES ***** */
 #include "device.h"
 #include "i2c.h"
 #include "uart.h"
@@ -7,12 +7,12 @@
 
 
 /* ***** PRIVATE METHOD PROTOTYPES ***** */
-static int32_t _device_open(device_t *dev, device_option_t options);                /** Open a device */
-static int32_t _device_close(device_t *dev);                                        /** Close a device */
-static int32_t _device_suspend(device_t *dev);                                      /** Power management: suspend */
-static int32_t _device_resume(device_t *dev);                                       /** Power management: suspend */
-static int32_t _device_attach(device_t *dev, device_t *drv);                        /** Attach driver drv to device dev */
-static int32_t _device_ioctl(device_t *dev, device_ioctl_t ioctl_id, void *args);   /** Interfere with configuration of the device through unified API */
+static int32_t _device_open(device_t *dev, device_option_t options);                // Open a device
+static int32_t _device_close(device_t *dev);                                        // Close a device
+static int32_t _device_suspend(device_t *dev);                                      // Power management: suspend
+static int32_t _device_resume(device_t *dev);                                       // Power management: suspend
+static int32_t _device_attach(device_t *dev, device_t *drv);                        // Attach driver drv to device dev
+static int32_t _device_ioctl(device_t *dev, device_ioctl_t ioctl_id, void *args);   // Interfere with configuration of the device through unified API
 
 
 /* ***** PUBLIC METHODS ***** */
@@ -127,7 +127,12 @@ int32_t device_resume(device_t *dev)
  */
 int32_t device_attach(device_t *dev, device_t *drv)
 {
+    if (drv == NULL) return -1;
     if (dev == NULL) return -1;
+
+    drv->root = dev;
+    list_insert(dev->drv, drv->root_drv);
+    dev->refcount++;
 
     if (dev->attach != NULL)
         dev->attach(dev, drv);

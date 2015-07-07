@@ -58,7 +58,7 @@ typedef enum _device_option_t {
     O_RDONLY,       ///< Read only device
     O_WRONLY,       ///< Write only device
     O_RDWR,         ///< Read/write device
-    O_NONBLOCKING,  ///< Non blocking operations
+    O_NONBLOCK,     ///< Non blocking operations
 } device_option_t;
 
 typedef struct _device_t device_t;
@@ -74,10 +74,11 @@ typedef struct _device_t {
     uint32_t irq;            ///< IRQ id
     device_option_t options; ///< Device options
 
-    list_t *drv;             ///< Driver using this device
+    device_t *root;          ///< Underlying device to use
+    list_t   *root_drv;      ///< List of devices which uses the parent device
+    
+    list_t *drv;             ///< List of drivers which uses the current device
     uint8_t refcount;        ///< Number of drivers using this device
-
-    device_t *dev;           ///< Underlying device to use
 
     void *private;           ///< Device specific
 
