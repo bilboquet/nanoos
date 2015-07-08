@@ -17,10 +17,10 @@ int main(void)
     /* should not be used this way ?
      i2c_open(&i2c, ID_I2C1, 0x00, 400000);*/
 
-    device_init(&i2c, DEVICE_I2C, "I2C1");
+//    device_init(&i2c, DEVICE_I2C, "I2C1");
     device_open(&i2c, O_RDWR);
 
-    device_init(&usart, DEVICE_UART, "USART2");
+//    device_init(&usart, DEVICE_UART, "USART2");
     device_open(&usart, O_RDWR);
 
     while (1) {

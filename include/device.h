@@ -102,7 +102,7 @@ typedef struct _device_t {
  * @param devname  The name of the device
  * @return error status
  */
-int32_t device_init(device_t *dev, device_type_t type, const char *devname);
+int32_t device_init(device_t *dev, device_type_t type, const char *devname, void* ops);
 
 /**
  * @brief Open a device with the given parameters

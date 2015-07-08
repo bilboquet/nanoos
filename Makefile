@@ -17,10 +17,13 @@ device.o: device.c device.h i2c.h uart.h
 
 uart.o: uart.c uart.h device.h
 
-.PHONY: doc
+
+.PHONY: doc clean
 doc:
 	doxygen nanoos.doxygen
 
-.PHONY: clean
+flow:
+	cflow main.c lib/time.c src/device.c drv/serial/uart.c
+
 clean:
 	rm -rf doc/ $(TARGET)

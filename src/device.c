@@ -5,31 +5,30 @@
 #include "time.h"
 #include "spi.h"
 
-
 /* ***** PRIVATE METHOD PROTOTYPES ***** */
 static int32_t _device_open(device_t *dev, device_option_t options);                // Open a device
 static int32_t _device_close(device_t *dev);                                        // Close a device
 static int32_t _device_suspend(device_t *dev);                                      // Power management: suspend
 static int32_t _device_resume(device_t *dev);                                       // Power management: suspend
 static int32_t _device_attach(device_t *dev, device_t *drv);                        // Attach driver drv to device dev
-static int32_t _device_ioctl(device_t *dev, device_ioctl_t ioctl_id, void *args);   // Interfere with configuration of the device through unified API
-
+static int32_t _device_ioctl(device_t *dev, device_ioctl_t ioctl_id, void *args); // Interfere with configuration of the device through unified API
 
 /* ***** PUBLIC METHODS ***** */
-int32_t device_init(device_t *dev, device_type_t type, const char *devname)
+int32_t device_init(device_t *dev, device_type_t type, const char *devname, void* ops)
 {
-    if (dev == NULL) return -1;
+    if (dev == NULL)
+        return -1;
 
     dev->type = type;
     strlcpy(dev->device_name, devname, 16); // TODO: replace strlcpy
 
     /* Initialize default operations on device */
-    dev->open =    _device_open;
-    dev->close =   _device_close;
+    dev->open = _device_open;
+    dev->close = _device_close;
     dev->suspend = _device_suspend;
-    dev->resume =  _device_resume;
-    dev->attach =  _device_attach;
-    dev->ioctl =   _device_ioctl;
+    dev->resume = _device_resume;
+    dev->attach = _device_attach;
+    dev->ioctl = _device_ioctl;
 
     // TODO:xxx_ops may need to be type casted
     switch (type) {
@@ -38,7 +37,7 @@ int32_t device_init(device_t *dev, device_type_t type, const char *devname)
         break;
 
     case DEVICE_UART:
-        dev->ops = &uart_ops;
+        dev->ops = ops;
         break;
 
     case DEVICE_TIME:
@@ -53,7 +52,8 @@ int32_t device_init(device_t *dev, device_type_t type, const char *devname)
         return -1;
     }
     //TODO: why this check?
-    if (dev == NULL) return -1;
+    if (dev == NULL)
+        return -1;
 
     return 0;
 }
@@ -66,8 +66,9 @@ int32_t device_init(device_t *dev, device_type_t type, const char *devname)
  */
 int32_t device_open(device_t *dev, device_option_t options)
 {
-    if (dev == NULL) return -1;
-    
+    if (dev == NULL)
+        return -1;
+
     if (dev->open != NULL)
         dev->open(dev, options);
 
@@ -81,7 +82,8 @@ int32_t device_open(device_t *dev, device_option_t options)
  */
 int32_t device_close(device_t *dev)
 {
-    if (dev == NULL) return -1;
+    if (dev == NULL)
+        return -1;
 
     if (dev->close != NULL)
         dev->close(dev);
@@ -96,7 +98,8 @@ int32_t device_close(device_t *dev)
  */
 int32_t device_suspend(device_t *dev)
 {
-    if (dev == NULL) return -1;
+    if (dev == NULL)
+        return -1;
 
     if (dev->suspend != NULL)
         dev->suspend(dev);
@@ -111,7 +114,8 @@ int32_t device_suspend(device_t *dev)
  */
 int32_t device_resume(device_t *dev)
 {
-    if (dev == NULL) return -1;
+    if (dev == NULL)
+        return -1;
 
     if (dev->resume != NULL)
         dev->resume(dev);
@@ -127,8 +131,10 @@ int32_t device_resume(device_t *dev)
  */
 int32_t device_attach(device_t *dev, device_t *drv)
 {
-    if (drv == NULL) return -1;
-    if (dev == NULL) return -1;
+    if (drv == NULL)
+        return -1;
+    if (dev == NULL)
+        return -1;
 
     drv->root = dev;
     list_insert(dev->drv, drv->root_drv);
@@ -149,14 +155,14 @@ int32_t device_attach(device_t *dev, device_t *drv)
  */
 int32_t ioctl(device_t *dev, device_ioctl_t id, void *arg)
 {
-    if (dev == NULL) return -1;
+    if (dev == NULL)
+        return -1;
 
     if (dev->ioctl != NULL)
         dev->ioctl(dev, id, arg);
 
     return 0;
 }
-
 
 /* ***** PRIVATE METHOD ***** */
 static int32_t _device_open(device_t *dev, device_option_t options)

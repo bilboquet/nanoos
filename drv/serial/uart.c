@@ -13,6 +13,15 @@
 //#include "stm32f4xx_hal_gpio.h"
 #endif /*STM32F429xx*/
 
+int32_t _uart_init(device_t *uart);
+int32_t _uart_open(device_t *uart, device_option_t options);
+int32_t _uart_close(device_t *uart);
+int32_t _uart_suspend(device_t *uart);
+int32_t _uart_resume(device_t *uart);
+int32_t _uart_ioctl(device_t *uart, device_ioctl_t id, void *arg);
+int32_t _uart_send(device_t *uart, const char *str, uint16_t len);
+int32_t _uart_recv(device_t *uart, const char *str, uint16_t len);
+
 /* ***** OPERATIONS ***** */
 static uart_ops_t uart_ops = {
     .init = _uart_init,
@@ -22,8 +31,7 @@ static uart_ops_t uart_ops = {
     .resume = _uart_resume,
     .ioctl = _uart_ioctl,
     .send = _uart_send,
-    .recv = _uart_recv
-};
+    .recv = _uart_recv};
 
 /* ***** PUBLIC METHODS ***** */
 int32_t uart_init(device_t *uart, const char *uartname)
@@ -36,7 +44,7 @@ int32_t uart_init(device_t *uart, const char *uartname)
 
 int32_t uart_open(device_t *uart, device_option_t options)
 {
-    return device_open(uart);
+    return device_open(uart, options);
 }
 
 int32_t uart_close(device_t *uart)
@@ -109,7 +117,7 @@ void test_uart(void)
     uart_recv(&uart, buffer_in, 1);
     uart_send(&uart, buffer_in, 1);
 
-    uart_close(uart);
+    uart_close(&uart);
 }
 
 /* ***** PRIVATE METHODS ***** */
@@ -135,7 +143,7 @@ int32_t _uart_close(device_t *uart)
     if (uart == NULL)
         return -1;
 
-    //uart->private = arg; ??? uart->private = uart
+//uart->private = arg; ??? uart->private = uart
 
     return arch_uart_close(uart);
 
