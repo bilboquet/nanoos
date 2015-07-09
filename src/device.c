@@ -14,7 +14,7 @@ static int32_t _device_attach(device_t *dev, device_t *drv);                    
 static int32_t _device_ioctl(device_t *dev, device_ioctl_t ioctl_id, void *args); // Interfere with configuration of the device through unified API
 
 /* ***** PUBLIC METHODS ***** */
-int32_t device_init(device_t *dev, device_type_t type, const char *devname, void* ops)
+int32_t device_init(device_t *dev, device_type_t type, const char *devname)
 {
     if (dev == NULL)
         return -1;
@@ -37,7 +37,8 @@ int32_t device_init(device_t *dev, device_type_t type, const char *devname, void
         break;
 
     case DEVICE_UART:
-        dev->ops = ops;
+//        dev->ops = ops;
+        uart_init(dev);
         break;
 
     case DEVICE_TIME:

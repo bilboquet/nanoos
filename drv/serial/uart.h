@@ -67,7 +67,7 @@ typedef struct _uart_ops_t {
     int32_t (*suspend)(device_t *uart);                                      ///< Power management: suspend
     int32_t (*resume)(device_t *uart);                                       ///< Power management: suspend
 
-    int32_t (*ioctl)(device_t *uart, device_ioctl_t ioctl_id, void *args);   ///< Interfere with configuration of the device through unified API
+    int32_t (*ioctl)(device_t *uart, device_ioctl_t ioctl_id, void *args); ///< Interfere with configuration of the device through unified API
 
     int32_t (*send)(device_t * uart, const char *str, uint16_t len);
     int32_t (*recv)(device_t * uart, const char *str, uint16_t len);
@@ -77,14 +77,12 @@ typedef struct _uart_ops_t {
  * Possible operations on an usart device
  */
 //extern const uart_ops_t uart_ops;
-
-int32_t uart_init(device_t *uart, const char *uartname);
-int32_t uart_open(device_t *uart, device_option_t options);
-int32_t uart_close(device_t *uart);
-int32_t uart_suspend(device_t *uart);
-int32_t uart_resume(device_t *uart);
-int32_t uart_ioctl(device_t *uart);
-int32_t uart_send(device_t *uart, const char *str, uint16_t len);
-int32_t uart_recv(device_t *uart, const char *str, uint16_t len);
-
+int32_t uart_init(device_t *uart);
+//int32_t uart_open(device_t *uart, device_option_t options);
+//int32_t uart_close(device_t *uart);
+//int32_t uart_suspend(device_t *uart);
+//int32_t uart_resume(device_t *uart);
+//int32_t uart_ioctl(device_t *uart);
+//int32_t uart_send(device_t *uart, const char *str, uint16_t len);
+//int32_t uart_recv(device_t *uart, const char *str, uint16_t len);
 #endif /* ! _USART_H */

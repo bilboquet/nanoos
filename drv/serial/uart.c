@@ -2,6 +2,7 @@
 #include  <stddef.h>
 #include <stdlib.h>
 #include "uart.h"
+#include "device_operation.h"
 
 #ifdef STM32F10x
 #include "stm32f10x.h"
@@ -34,12 +35,12 @@ static uart_ops_t uart_ops = {
     .recv = _uart_recv};
 
 /* ***** PUBLIC METHODS ***** */
-int32_t uart_init(device_t *uart, const char *uartname)
+int32_t uart_init(device_t *uart)
 {
     if (uart == NULL)
         return -1;
-
-    return device_init(uart, DEVICE_UART, uartname, &uart_ops);
+    uart->ops = &uart_ops;
+    return 0;
 }
 
 int32_t uart_open(device_t *uart, device_option_t options)
@@ -108,14 +109,14 @@ void test_uart(void)
     device_t uart;
     char buffer_in[16];
 
-    uart_init(&uart, "/dev/uart-0");
+    device_init(&uart, DEVICE_UART, "/dev/uart-0");
 
-    uart_open(&uart, O_RDWR);
+    device_open(&uart, O_RDWR);
 
-    uart_send(&uart, "Echo test\r\n", 11);
+    DEVICE_CALL(&uart, send, "Echo test\r\n", 11);
 
-    uart_recv(&uart, buffer_in, 1);
-    uart_send(&uart, buffer_in, 1);
+    DEVICE_CALL(&uart, recv, buffer_in, 1);
+    DEVICE_CALL(&uart, send, buffer_in, 1);
 
     uart_close(&uart);
 }
