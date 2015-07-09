@@ -30,32 +30,6 @@ int32_t device_init(device_t *dev, device_type_t type, const char *devname)
     dev->attach = _device_attach;
     dev->ioctl = _device_ioctl;
 
-    // TODO:xxx_ops may need to be type casted
-    switch (type) {
-    case DEVICE_I2C:
-        dev->ops = &i2c_ops;
-        break;
-
-    case DEVICE_UART:
-//        dev->ops = ops;
-        uart_init(dev);
-        break;
-
-    case DEVICE_TIME:
-        dev->ops = &time_ops;
-        break;
-
-    case DEVICE_SPI:
-        dev->ops = &spi_ops;
-        break;
-
-    default:
-        return -1;
-    }
-    //TODO: why this check?
-    if (dev == NULL)
-        return -1;
-
     return 0;
 }
 

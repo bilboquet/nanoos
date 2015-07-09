@@ -66,31 +66,29 @@ typedef struct _device_t device_t;
  * Structure describing a device.
  */
 typedef struct _device_t {
-    char device_name[16];    ///< Device name
-    device_type_t type;    ///< Device type
-    device_state_t state;    ///< Device state
+    char device_name[16];       ///< Device name
+    device_type_t type;         ///< Device type
+    device_state_t state;       ///< Device state
 
-    lock_t lock;    ///< Device protection against multiple access
-    uint32_t irq;    ///< IRQ id
+    lock_t lock;                ///< Device protection against multiple access
+    uint32_t irq;               ///< IRQ id
     device_option_t options;    ///< Device options
 
-    device_t *root;    ///< Underlying device to use
-    list_t *root_drv;    ///< List of devices which uses the parent device
+    device_t *root;             ///< Underlying device to use
+    list_t *root_drv;           ///< List of devices which uses the parent device
 
-    list_t *drv;    ///< List of drivers which uses the current device
-    uint8_t refcount;    ///< Number of drivers using this device
+    list_t *drv;                ///< List of drivers which uses the current device
+    uint8_t refcount;           ///< Number of drivers using this device
 
-    void *private;    ///< Device specific
+    void *private;              ///< Device specific
 
     /* Standard operations on devices */
     int32_t (*open)(device_t *dev, device_option_t options);                ///< Open a device
-    int32_t (*close)(device_t *dev);                ///< Close a device
-    int32_t (*suspend)(device_t *dev);                ///< Power management: suspend
-    int32_t (*resume)(device_t *dev);                ///< Power management: suspend
-    int32_t (*attach)(device_t *dev, device_t *drv);                ///< Attach driver drv to device dev
+    int32_t (*close)(device_t *dev);                                        ///< Close a device
+    int32_t (*suspend)(device_t *dev);                                      ///< Power management: suspend
+    int32_t (*resume)(device_t *dev);                                       ///< Power management: suspend
+    int32_t (*attach)(device_t *dev, device_t *drv);                        ///< Attach driver drv to device dev
     int32_t (*ioctl)(device_t *dev, device_ioctl_t ioctl_id, void *args); ///< Interfere with configuration of the device through unified API
-
-    void *ops;                ///< Specific device operations
 } device_t;
 
 /* ***** PUBLIC METHODS ***** */

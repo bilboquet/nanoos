@@ -14,33 +14,39 @@
 //#include "stm32f4xx_hal_gpio.h"
 #endif /*STM32F429xx*/
 
-int32_t _uart_init(device_t *uart);
-int32_t _uart_open(device_t *uart, device_option_t options);
-int32_t _uart_close(device_t *uart);
-int32_t _uart_suspend(device_t *uart);
-int32_t _uart_resume(device_t *uart);
-int32_t _uart_ioctl(device_t *uart, device_ioctl_t id, void *arg);
-int32_t _uart_send(device_t *uart, const char *str, uint16_t len);
-int32_t _uart_recv(device_t *uart, const char *str, uint16_t len);
+int32_t _uart_open(device_uart_t *uart, device_option_t options);
+int32_t _uart_close(device_uart_t *uart);
+int32_t _uart_suspend(device_uart_t *uart);
+int32_t _uart_resume(device_uart_t *uart);
+int32_t _uart_ioctl(device_uart_t *uart, device_ioctl_t id, void *arg);
+int32_t _uart_send(device_uart_t *uart, const char *str, uint16_t len);
+int32_t _uart_recv(device_uart_t *uart, const char *str, uint16_t len);
 
 /* ***** OPERATIONS ***** */
-static uart_ops_t uart_ops = {
-    .init = _uart_init,
-    .open = _uart_open,
-    .close = _uart_close,
-    .suspend = _uart_suspend,
-    .resume = _uart_resume,
-    .ioctl = _uart_ioctl,
-    .send = _uart_send,
-    .recv = _uart_recv};
-
+//TODO: move ops back to a static struct and do it for device_t as well.
+//static uart_ops_t uart_ops = {
+//        .init = _uart_init,
+//        .open = _uart_open,
+//        .close = _uart_close,
+//        .suspend = _uart_suspend,
+//        .resume = _uart_resume,
+//        .ioctl = _uart_ioctl,
+//        .send = _uart_send,
+//        .recv = _uart_recv };
 /* ***** PUBLIC METHODS ***** */
-int32_t uart_init(device_t *uart)
+int32_t uart_init(device_uart_t *uart, const char *devname)
 {
     if (uart == NULL)
         return -1;
-    uart->ops = &uart_ops;
-    return 0;
+    uart->open = _uart_open;
+    uart->close = _uart_close;
+    uart->suspend = _uart_suspend;
+    uart->resume = _uart_resume;
+    uart->ioctl = _uart_ioctl;
+    uart->send = _uart_send;
+    uart->recv = _uart_recv;
+
+    return device_init((device_t*) uart, DEVICE_UART, devname);
 }
 
 int32_t uart_open(device_t *uart, device_option_t options)
@@ -88,37 +94,24 @@ int32_t uart_ioctl(device_t *uart)
     return device_ioctl(uart);
 }
 
-int32_t uart_send(device_t *uart, const char *str, uint16_t len)
-{
-    if (uart == NULL)
-        return -1;
-
-    return ((uart_ops_t *) (uart->ops))->send(uart, str, len);
-}
-
-int32_t uart_recv(device_t *uart, const char *str, uint16_t len)
-{
-    if (uart == NULL)
-        return -1;
-
-    return ((uart_ops_t *) (uart->ops))->recv(uart, str, len);
-}
-
 void test_uart(void)
 {
-    device_t uart;
+    device_uart_t uart;
     char buffer_in[16];
 
-    device_init(&uart, DEVICE_UART, "/dev/uart-0");
+    uart_init(&uart, "/dev/uart-0");
 
-    device_open(&uart, O_RDWR);
+    uart.open(&uart, O_RDWR);
 
     DEVICE_CALL(&uart, send, "Echo test\r\n", 11);
+    uart.send(&uart, "Echo test\r\n", 11);
 
-    DEVICE_CALL(&uart, recv, buffer_in, 1);
-    DEVICE_CALL(&uart, send, buffer_in, 1);
+    //DEVICE_CALL(&uart, recv, buffer_in, 1);
+    uart.recv(&uart, buffer_in, 1);
+    //DEVICE_CALL(&uart, send, buffer_in, 1);
+    uart.send(&uart, buffer_in, 1);
 
-    uart_close(&uart);
+    uart.close(&uart);
 }
 
 /* ***** PRIVATE METHODS ***** */
@@ -130,7 +123,7 @@ int32_t _uart_init(device_t *uart)
     return arch_uart_init(uart);
 }
 
-int32_t _uart_open(device_t *uart, device_option_t options)
+int32_t _uart_open(device_uart_t *uart, device_option_t options)
 {
     if (uart == NULL)
         return -1;
@@ -139,7 +132,7 @@ int32_t _uart_open(device_t *uart, device_option_t options)
 
 }
 
-int32_t _uart_close(device_t *uart)
+int32_t _uart_close(device_uart_t *uart)
 {
     if (uart == NULL)
         return -1;
@@ -150,7 +143,7 @@ int32_t _uart_close(device_t *uart)
 
 }
 
-int32_t _uart_suspend(device_t *uart)
+int32_t _uart_suspend(device_uart_t *uart)
 {
     if (uart == NULL)
         return -1;
@@ -158,7 +151,7 @@ int32_t _uart_suspend(device_t *uart)
     return arch_uart_open(uart);
 }
 
-int32_t _uart_resume(device_t *uart)
+int32_t _uart_resume(device_uart_t *uart)
 {
     if (uart == NULL)
         return -1;
@@ -167,7 +160,7 @@ int32_t _uart_resume(device_t *uart)
 
 }
 
-int32_t _uart_ioctl(device_t *uart, device_ioctl_t id, void *arg)
+int32_t _uart_ioctl(device_uart_t *uart, device_ioctl_t id, void *arg)
 {
     int32_t err;
     if (uart == NULL)
@@ -193,7 +186,7 @@ int32_t _uart_ioctl(device_t *uart, device_ioctl_t id, void *arg)
     return err;
 }
 
-int32_t _uart_send(device_t *uart, const char *str, uint16_t len)
+int32_t _uart_send(device_uart_t *uart, const char *str, uint16_t len)
 {
     if (uart == NULL)
         return -1;
@@ -201,7 +194,7 @@ int32_t _uart_send(device_t *uart, const char *str, uint16_t len)
     return arch_uart_send(uart, str, len);
 }
 
-int32_t _uart_recv(device_t *uart, const char *str, uint16_t len)
+int32_t _uart_recv(device_uart_t *uart, const char *str, uint16_t len)
 {
     if (uart == NULL)
         return -1;

@@ -25,7 +25,7 @@ int main(void)
 
     while (1) {
         // Receive next command length coded on 2 bytes from host
-        ((uart_ops_t *) (usart.ops))->recv(&usart, buffer, 2);
+        //((uart_ops_t *) (usart.ops))->recv(&usart, buffer, 2);
         length = buffer[1] << 8 | buffer[0];
 
         // Receive I2C command from host
